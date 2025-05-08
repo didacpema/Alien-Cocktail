@@ -21,9 +21,9 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
-    public void LoadDemoScene()
+    public void LoadGameScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DemoScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
 
         if (GameManager.Instance != null)
         {
@@ -48,7 +48,7 @@ public class SceneManager : MonoBehaviour
 
     public void OnPlayAgain()
     {
-        LoadDemoScene();
+        LoadGameScene();
     }
 
     public void OnShiftCompleted()
