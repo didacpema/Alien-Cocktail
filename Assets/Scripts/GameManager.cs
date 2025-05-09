@@ -19,11 +19,20 @@ public class GameManager : MonoBehaviour
     public RecipeManager recipeManager;
     public ClientManager clientManager; 
     public ResultManager resultManager; 
-    public SceneManager sceneManager;
 
     private int currentScore;
     private int clientsServed;
     private bool isShiftActive;
+
+    public enum OrderGrade { Excellent, Notable, Good, Sufficient, Failed }
+    private OrderGrade lastOrderGrade;
+
+    [Header("Puntuación")]
+    public int excellentPoints = 100;
+    public int notablePoints = 80;
+    public int goodPoints = 60;
+    public int sufficientPoints = 40;
+    public int failedPoints = 0;
 
     private void Awake()
     {
@@ -57,17 +66,19 @@ public class GameManager : MonoBehaviour
         clientsServed = 0;
         isShiftActive = true;
 
-        //recipeManager.InitializeRecipes(); 
-        //clientManager.GenerateNewClient(); 
+        recipeManager.InitializeRecipes(); 
+        clientManager.GenerateNewClient(); 
     }
 
+
+    //el gameManager calcula la puntuación y el resultManager procesa y muestra los resultados finales!!
+    //esta funcion deberia llamarse en el clientManager!!
     public void CompleteOrder(bool success, float timeRemaining)
     {
         if (!isShiftActive) return;
 
-        int pointsEarned = success ?
-            Mathf.RoundToInt(100 + (timeRemaining * 0.5f)) :
-            -50;
+        lastOrderGrade = CalculateGrade(success, timeRemaining);
+        int pointsEarned = GetPointsFromGrade(lastOrderGrade);
 
         currentScore += pointsEarned;
         clientsServed++;
@@ -78,15 +89,37 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //clientManager.GenerateNewClient(); 
+            clientManager.GenerateNewClient(); 
         }
+    }
+    private OrderGrade CalculateGrade(bool success, float timeRemaining)
+    {
+        if (!success) return OrderGrade.Failed;
+
+        if (timeRemaining > 45f) return OrderGrade.Excellent;
+        if (timeRemaining > 30f) return OrderGrade.Notable;
+        if (timeRemaining > 15f) return OrderGrade.Good;
+        if (timeRemaining > 1f) return OrderGrade.Sufficient;
+        return OrderGrade.Failed;
+    }
+
+    private int GetPointsFromGrade(OrderGrade grade)
+    {
+        return grade switch
+        {
+            OrderGrade.Excellent => excellentPoints,
+            OrderGrade.Notable => notablePoints,
+            OrderGrade.Good => goodPoints,
+            OrderGrade.Sufficient => sufficientPoints,
+            _ => failedPoints
+        };
     }
 
     private void EndShift()
     {
         isShiftActive = false;
-        //resultManager.CalculateFinalResults(currentScore); 
-        //sceneManager.LoadResultsScene();
+        resultManager.CalculateFinalResults(currentScore); 
+        SceneLoader.Instance.LoadResultsScene();
     }
 
     public int GetCurrentScore() => currentScore;

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ResultManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void CalculateFinalResults(int finalScore)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Lógica para calcular y mostrar los resultados
+        // Esto se llama desde GameManager.EndShift()
     }
 }

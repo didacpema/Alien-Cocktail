@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeRecipes()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Lógica para inicializar/recargar las recetas disponibles
     }
 }

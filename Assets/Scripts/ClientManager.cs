@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ClientManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void GenerateNewClient()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Lógica para generar un nuevo cliente
     }
 }
