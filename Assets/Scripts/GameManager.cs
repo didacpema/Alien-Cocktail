@@ -1,7 +1,8 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Management;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class GameManager : MonoBehaviour
     public XROrigin vrOrigin; 
     public XRInteractionManager interactionManager;
 
+
     [Header("Game Settings")]
     public float baseTimePerOrder = 90f;
     public int maxClientsPerShift = 5;
+
 
     [Header("Managers")]
     public RecipeManager recipeManager;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
     public enum OrderGrade { Excellent, Notable, Good, Sufficient, Failed }
     private OrderGrade lastOrderGrade;
 
-    [Header("Puntuación")]
+    [Header("Puntuaciï¿½n")]
     public int excellentPoints = 100;
     public int notablePoints = 80;
     public int goodPoints = 60;
@@ -71,7 +74,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //el gameManager calcula la puntuación y el resultManager procesa y muestra los resultados finales!!
+    //el gameManager calcula la puntuaciï¿½n y el resultManager procesa y muestra los resultados finales!!
     //esta funcion deberia llamarse en el clientManager!!
     public void CompleteOrder(bool success, float timeRemaining)
     {
