@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -98,25 +99,25 @@ public class RecipeManager : MonoBehaviour
         return false;
     }
 
-    private bool CheckRecipeMatch(Recipe recipe, List<Ingredient> ingredients)
+    private bool CheckRecipeMatch(Recipe recipe, List<Ingredient> mixedIngredients)
     {
-        if (recipe.ingredients.Length != ingredients.Count) return false;
-        
-        for (int i = 0; i < recipe.ingredients.Length; i++)
+        // Agrupa ingredientes mezclados por tipo y cantidad
+        var mixedGroups = mixedIngredients
+            .GroupBy(i => (i.name, i.type))
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        // Verifica cada requerimiento de la receta
+        foreach (var req in recipe.ingredients)
         {
-            if (!CompareIngredient(recipe.ingredients[i].ingredient, ingredients[i]))
+            var key = (req.ingredient.name, req.ingredient.type);
+            if (!mixedGroups.TryGetValue(key, out int mixedCount) || 
+                mixedCount < req.amount)
             {
                 return false;
             }
         }
         return true;
     }
-
-    private bool CompareIngredient(Ingredient a, Ingredient b)
-    {
-        return a.name == b.name && a.type == b.type;
-    }
-
     
 }
 
