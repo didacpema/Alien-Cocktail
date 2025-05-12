@@ -323,8 +323,8 @@ MonoBehaviour:
   baseTimePerOrder: 90
   maxClientsPerShift: 5
   recipeManager: {fileID: 1188740402}
-  clientManager: {fileID: 0}
-  resultManager: {fileID: 0}
+  clientManager: {fileID: 1553478436}
+  resultManager: {fileID: 1069535674}
   excellentPoints: 100
   notablePoints: 80
   goodPoints: 60
@@ -650,6 +650,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985825216}
   m_CullTransparentMesh: 1
+--- !u!1 &1069535673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069535675}
+  - component: {fileID: 1069535674}
+  m_Layer: 0
+  m_Name: ResultManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1069535674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069535673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0994ea8f3b83c54890267b52af2601b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1069535675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069535673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42582327, y: 2.2816122, z: -0.78811055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188740401
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +724,139 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableIngredients: []
-  recipes: []
+  recipes:
+  - name: Allmighty
+    ingredients:
+    - ingredient:
+        name: Vodka
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Whiskey
+        type: 1
+      amount: 40
+    - ingredient:
+        name: Huesos
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Hielo
+        type: 0
+      amount: 3
+    - ingredient:
+        name: DragonFruit
+        type: 0
+      amount: 3
+  - name: Nebula Nectar;
+    ingredients:
+    - ingredient:
+        name: Ginebra
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Cocacolastic
+        type: 1
+      amount: 50
+    - ingredient:
+        name: Flor Alien
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Hielo
+        type: 0
+      amount: 2
+    - ingredient:
+        name: DragonFruit
+        type: 0
+      amount: 1
+  - name: Cosmic Kiss
+    ingredients:
+    - ingredient:
+        name: Ron
+        type: 1
+      amount: 30
+    - ingredient:
+        name: Lemongina
+        type: 1
+      amount: 40
+    - ingredient:
+        name: BlueLemon
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Hielo
+        type: 0
+      amount: 3
+    - ingredient:
+        name: Tentaculos
+        type: 0
+      amount: 3
+  - name: ZeroGravity
+    ingredients:
+    - ingredient:
+        name: Ginebra
+        type: 1
+      amount: 50
+    - ingredient:
+        name: Orangina
+        type: 1
+      amount: 50
+    - ingredient:
+        name: Champis
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Hielo
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Hierbabuena
+        type: 0
+      amount: 2
+  - name: Stellar Seduction
+    ingredients:
+    - ingredient:
+        name: Orangina
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Lemongina
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Cocacolastic
+        type: 1
+      amount: 10
+    - ingredient:
+        name: FlorAlien
+        type: 0
+      amount: 3
+    - ingredient:
+        name: Hierbabuena
+        type: 0
+      amount: 2
+  - name: Sweet Lele
+    ingredients:
+    - ingredient:
+        name: Vodka
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Ginebra
+        type: 1
+      amount: 20
+    - ingredient:
+        name: Champis
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Tentaculos
+        type: 0
+      amount: 2
+    - ingredient:
+        name: Huesos
+        type: 0
+      amount: 3
 --- !u!4 &1188740403
 Transform:
   m_ObjectHideFlags: 0
@@ -734,6 +910,50 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528654131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42582327, y: 2.2816122, z: -0.78811055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1553478435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1553478437}
+  - component: {fileID: 1553478436}
+  m_Layer: 0
+  m_Name: ClientManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1553478436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553478435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110899553fd0a504a95edb8e8c6cf4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1553478437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553478435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.42582327, y: 2.2816122, z: -0.78811055}
@@ -1208,3 +1428,5 @@ SceneRoots:
   - {fileID: 1661856966}
   - {fileID: 1188740403}
   - {fileID: 1528654133}
+  - {fileID: 1553478437}
+  - {fileID: 1069535675}
