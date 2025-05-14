@@ -1,63 +1,126 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ClientManager : MonoBehaviour
 {
     [Header("Client Settings")]
     public GameObject alienPrefab;
     public float moveSpeed = 1.5f;
-    public float timeBetweenClients = 10f;
-    public float waitTimeAtDestination = 5f; 
-    public int maxActiveClients = 1;
+    public float timeBetweenClients = 5f;
+    public float waitingTime = 90f;
 
     [Header("References")]
     private Transform spawnPoint;
     private Transform destinationPoint;
     private GameObject currentAlien;
+    private bool pointsInitialized = false;
+    private GameObject timerUIInstance;
+    private TMP_Text timerText;
+    private int clientsSpawnedInShift = 0;
+
+    [Header("UI Settings")]
+    public GameObject timerTextPrefab; 
+    public float timerHeightOffset = 0.5f;
+
+    public static ClientManager Instance { get; private set; }
+
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void Awake()
     {
-        GameObject spawnObj = GameObject.FindGameObjectWithTag("SpawnPoint");
-        GameObject destObj = GameObject.FindGameObjectWithTag("Destination");
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
-        if (spawnObj != null) spawnPoint = spawnObj.transform;
-        if (destObj != null) destinationPoint = destObj.transform;
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GameScene") InitializeSpawnPoints();
+    }
+    private void InitializeSpawnPoints()
+    {
+        pointsInitialized = false;
+        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;
+        destinationPoint = GameObject.FindGameObjectWithTag("Destination")?.transform;
+        pointsInitialized = spawnPoint != null && destinationPoint != null;
 
-        Debug.Log($"Spawn: {spawnPoint != null}, Dest: {destinationPoint != null}");
+        if (!pointsInitialized)
+            Debug.LogError("Failed to initialize spawn points");
+    }
+
+    public void StartClientCycle(int maxClients)
+    {
+        clientsSpawnedInShift = 0;
+        GenerateNewClient();
     }
 
     public void GenerateNewClient()
     {
-        if (currentAlien == null && maxActiveClients > 0)
+        if (!pointsInitialized)
         {
-            StartCoroutine(SpawnMoveAndReturnClient());
+            StartCoroutine(RetryGenerateClient());
+            return;
+        }
+
+        if (currentAlien == null && clientsSpawnedInShift < GameManager.Instance.maxClientsPerShift)
+        {
+            StartCoroutine(MoveClient());
         }
     }
 
-    private IEnumerator SpawnMoveAndReturnClient()
+    private IEnumerator RetryGenerateClient()
     {
-        Debug.Log("Generando alien..."); // Paso 1
+        yield return new WaitForEndOfFrame(); 
+        GenerateNewClient();
+    }
+
+    private IEnumerator MoveClient()
+    {
+        clientsSpawnedInShift++;
         currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        Debug.Log("Moviendo hacia destino: " + destinationPoint.position); // Paso 2
         yield return MoveToPosition(destinationPoint.position);
 
-        Debug.Log("Esperando en destino..."); // Paso 3
-        yield return new WaitForSeconds(waitTimeAtDestination);
+        ShowTimer();
+        float remainingTime = waitingTime;
 
-        Debug.Log("Regresando al spawn..."); // Paso 4
+        while (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+            UpdateTimerText(Mathf.CeilToInt(remainingTime));
+            yield return null;
+        }
+
+        HideTimer();
+
         yield return MoveToPosition(spawnPoint.position);
 
-        Debug.Log("Destruyendo alien"); // Paso 5
         Destroy(currentAlien);
         currentAlien = null;
 
-        yield return new WaitForSeconds(timeBetweenClients);
-        GenerateNewClient();
+        if (clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift)
+        {
+            GameManager.Instance.EndShift();
+        }
+        else
+        {
+            yield return new WaitForSeconds(timeBetweenClients);
+            GenerateNewClient();
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition)
     {
+        if (currentAlien == null) yield break;
+
         while (Vector3.Distance(currentAlien.transform.position, targetPosition) > 0.1f)
         {
             currentAlien.transform.position = Vector3.MoveTowards(
@@ -66,6 +129,40 @@ public class ClientManager : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
             yield return null;
+        }
+    }
+
+    private void ShowTimer()
+    {
+        if (timerTextPrefab == null) return;
+
+        timerUIInstance = Instantiate(timerTextPrefab);
+        timerText = timerUIInstance.GetComponentInChildren<TMP_Text>();
+
+        if (currentAlien != null)
+        {
+            timerUIInstance.transform.position = currentAlien.transform.position + Vector3.up * timerHeightOffset;
+            timerUIInstance.transform.SetParent(currentAlien.transform);
+        }
+    }
+
+    private void UpdateTimerText(int totalSeconds)
+    {
+        if (timerText != null)
+        {
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+
+            timerText.text = $"{minutes:00}:{seconds:00}";
+            timerText.color = totalSeconds <= 15 ? Color.red : Color.green;
+        }
+    }
+
+    private void HideTimer()
+    {
+        if (timerUIInstance != null)
+        {
+            Destroy(timerUIInstance);
         }
     }
 }

@@ -1,5 +1,7 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -14,8 +16,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Game Settings")]
-    public float baseTimePerOrder = 90f;
-    public int maxClientsPerShift = 5;
+    public int maxClientsPerShift = 1; //cambiar a 5 más adelante
 
 
     [Header("Managers")]
@@ -30,12 +31,15 @@ public class GameManager : MonoBehaviour
     public enum OrderGrade { Excellent, Notable, Good, Sufficient, Failed }
     private OrderGrade lastOrderGrade;
 
-    [Header("Puntuaci�n")]
+    [Header("Puntuation")]
     public int excellentPoints = 100;
     public int notablePoints = 80;
     public int goodPoints = 60;
     public int sufficientPoints = 40;
     public int failedPoints = 0;
+
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void Awake()
     {
@@ -48,10 +52,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GameScene") InitializeGame();
+    }
+
+    private void InitializeGame()
     {
         InitializeVR();
-        Debug.Log("Iniciando nuevo turno...");
         StartNewShift();
     }
 
@@ -70,12 +78,12 @@ public class GameManager : MonoBehaviour
         clientsServed = 0;
         isShiftActive = true;
 
-        recipeManager.InitializeRecipes(); 
-        clientManager.GenerateNewClient(); 
+        recipeManager.InitializeRecipes();
+        clientManager.StartClientCycle(maxClientsPerShift);
     }
 
 
-    //el gameManager calcula la puntuaci�n y el resultManager procesa y muestra los resultados finales!!
+    //el gameManager calcula la puntuacion y el resultManager procesa y muestra los resultados finales!!
     //esta funcion deberia llamarse en el clientManager!!
     public void CompleteOrder(bool success, float timeRemaining)
     {
@@ -119,7 +127,7 @@ public class GameManager : MonoBehaviour
         };
     }
 
-    private void EndShift()
+    public void EndShift()
     {
         isShiftActive = false;
         resultManager.CalculateFinalResults(currentScore); 
