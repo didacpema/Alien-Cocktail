@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeVR();
+        Debug.Log("Iniciando nuevo turno...");
         StartNewShift();
     }
 

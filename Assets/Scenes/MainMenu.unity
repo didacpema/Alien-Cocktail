@@ -1153,6 +1153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110899553fd0a504a95edb8e8c6cf4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alienPrefab: {fileID: 1259315253386265185, guid: 70a10935dcc579d419d4290a9ac08a1a, type: 3}
+  moveSpeed: 1.5
+  timeBetweenClients: 10
+  waitTimeAtDestination: 5
+  maxActiveClients: 1
 --- !u!4 &1553478437
 Transform:
   m_ObjectHideFlags: 0
