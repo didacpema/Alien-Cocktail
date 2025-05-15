@@ -25,6 +25,10 @@ public class ClientManager : MonoBehaviour
     public GameObject timerTextPrefab; 
     public float timerHeightOffset = 0.5f;
 
+    [Header("Recipe Settings")]
+    private Recipe currentClientRecipe;
+    public Recipe CurrentClientRecipe => currentClientRecipe;
+
     public static ClientManager Instance { get; private set; }
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -88,6 +92,18 @@ public class ClientManager : MonoBehaviour
         currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
 
         yield return MoveToPosition(destinationPoint.position);
+
+        currentClientRecipe = RecipeManager.Instance.GetRandomRecipe();
+
+        if (currentClientRecipe.Equals(default(Recipe)))
+        {
+            Debug.LogError("No hay recetas disponibles");
+        }
+
+        if (RecipeDisplay.Instance != null)
+        {
+            RecipeDisplay.Instance.ShowRecipe(currentClientRecipe);
+        }
 
         ShowTimer();
         float remainingTime = waitingTime;

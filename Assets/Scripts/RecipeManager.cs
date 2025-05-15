@@ -118,6 +118,13 @@ public class RecipeManager : MonoBehaviour
         }
         return true;
     }
+
+
+    public bool ValidateCurrentRecipe(List<Ingredient> mixedIngredients)
+    {
+        return !ClientManager.Instance.CurrentClientRecipe.Equals(default(Recipe)) && 
+            CheckRecipeMatch(ClientManager.Instance.CurrentClientRecipe, mixedIngredients);
+    }
     
 }
 
