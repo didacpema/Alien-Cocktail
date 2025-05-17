@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\RecipeDisplay.cs" />
     <Compile Include="Assets\Liquid\Machine.cs" />
     <Compile Include="Assets\Liquid\Stream.cs" />
+    <Compile Include="Assets\Scripts\CompleteOrderTrigger.cs" />
     <Compile Include="Assets\Scripts\ResultManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ClientManager.cs" />

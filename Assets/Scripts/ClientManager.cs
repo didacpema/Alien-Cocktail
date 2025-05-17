@@ -29,6 +29,10 @@ public class ClientManager : MonoBehaviour
     private Recipe currentClientRecipe;
     public Recipe CurrentClientRecipe => currentClientRecipe;
 
+    private float currentRemainingTime;
+    private bool isOrderCompleted = false;
+    private bool isWaitingForOrder = false;
+
     public static ClientManager Instance { get; private set; }
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -90,6 +94,7 @@ public class ClientManager : MonoBehaviour
     {
         clientsSpawnedInShift++;
         currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
+        isOrderCompleted = false;
 
         yield return MoveToPosition(destinationPoint.position);
 
@@ -106,16 +111,22 @@ public class ClientManager : MonoBehaviour
         }
 
         ShowTimer();
-        float remainingTime = waitingTime;
+        currentRemainingTime = waitingTime;
+        isWaitingForOrder = true;
 
-        while (remainingTime > 0)
+        while (currentRemainingTime > 0 && !isOrderCompleted)
         {
-            remainingTime -= Time.deltaTime;
-            UpdateTimerText(Mathf.CeilToInt(remainingTime));
+            currentRemainingTime -= Time.deltaTime;
+            UpdateTimerText(Mathf.CeilToInt(currentRemainingTime));
             yield return null;
         }
 
         HideTimer();
+        if (RecipeDisplay.Instance != null)
+        {
+            RecipeDisplay.Instance.HideRecipe();
+        }
+        isWaitingForOrder = false;
 
         yield return MoveToPosition(spawnPoint.position);
 
@@ -145,6 +156,23 @@ public class ClientManager : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
             yield return null;
+        }
+    }
+
+    public void CompleteCurrentOrder()
+    {
+        if (isWaitingForOrder)
+        {
+            isOrderCompleted = true;
+
+            if (timerText != null)
+            {
+                timerText.color = Color.blue;
+            }
+            if (RecipeDisplay.Instance != null)
+            {
+                RecipeDisplay.Instance.HideRecipe();
+            }
         }
     }
 
@@ -180,5 +208,10 @@ public class ClientManager : MonoBehaviour
         {
             Destroy(timerUIInstance);
         }
+    }
+
+    public float GetCurrentRemainingTime()
+    {
+        return isWaitingForOrder ? currentRemainingTime : 0f;
     }
 }
