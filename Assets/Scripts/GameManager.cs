@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public ClientManager clientManager; 
     public ResultManager resultManager; 
 
+    [Header("Time Settings")]
+    public float totalOrderTime = 60f;
+
     private int currentScore;
     private int clientsServed;
     private bool isShiftActive;
@@ -85,15 +88,21 @@ public class GameManager : MonoBehaviour
 
     //el gameManager calcula la puntuacion y el resultManager procesa y muestra los resultados finales!!
     //esta funcion deberia llamarse en el clientManager!!
-    public void CompleteOrder(bool success, float timeRemaining)
+    public void CompleteOrder(bool success, float timeRemaining, string recipeName)
     {
         if (!isShiftActive) return;
 
         lastOrderGrade = CalculateGrade(success, timeRemaining);
         int pointsEarned = GetPointsFromGrade(lastOrderGrade);
+        float timeUsed = totalOrderTime - timeRemaining;
 
         currentScore += pointsEarned;
         clientsServed++;
+
+        // Guardar el resultado en el ResultManager
+        resultManager.SaveRecipeResult(recipeName, lastOrderGrade, pointsEarned, timeUsed, success);
+
+        Debug.Log($"Orden completada: {recipeName} - {lastOrderGrade} - {pointsEarned} puntos");
 
         if (clientsServed >= maxClientsPerShift)
         {
@@ -104,6 +113,19 @@ public class GameManager : MonoBehaviour
             clientManager.GenerateNewClient(); 
         }
     }
+
+    public void CompleteOrder(bool success, float timeRemaining)
+    {
+        // Intentar obtener la receta actual del cliente
+        string recipeName = "Receta Desconocida";
+        if (clientManager != null && !clientManager.CurrentClientRecipe.Equals(default(Recipe)))
+        {
+            recipeName = clientManager.CurrentClientRecipe.name;
+        }
+        
+        CompleteOrder(success, timeRemaining, recipeName);
+    }
+
     private OrderGrade CalculateGrade(bool success, float timeRemaining)
     {
         if (!success) return OrderGrade.Failed;
@@ -111,7 +133,7 @@ public class GameManager : MonoBehaviour
         if (timeRemaining > 45f) return OrderGrade.Excellent;
         if (timeRemaining > 30f) return OrderGrade.Notable;
         if (timeRemaining > 15f) return OrderGrade.Good;
-        if (timeRemaining > 1f) return OrderGrade.Sufficient;
+        if (timeRemaining >= 0f) return OrderGrade.Sufficient;
         return OrderGrade.Failed;
     }
 

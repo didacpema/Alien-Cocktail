@@ -22,11 +22,6 @@ public class CompleteOrderTrigger : MonoBehaviour
 
     private void HandleDrink(GameObject drink)
     {
-        Rigidbody rb = drink.GetComponent<Rigidbody>();
-        if (rb != null) rb.isKinematic = true;
-
-        Collider col = drink.GetComponent<Collider>();
-        if (col != null) col.enabled = false;
 
         drink.transform.position = drinkSnapPosition.position;
         drink.transform.rotation = drinkSnapPosition.rotation;

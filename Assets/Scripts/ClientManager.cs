@@ -114,7 +114,7 @@ public class ClientManager : MonoBehaviour
         currentRemainingTime = waitingTime;
         isWaitingForOrder = true;
 
-        while (currentRemainingTime > 0 && !isOrderCompleted)
+        while (currentRemainingTime > 0 && !isOrderCompleted && isWaitingForOrder)
         {
             currentRemainingTime -= Time.deltaTime;
             UpdateTimerText(Mathf.CeilToInt(currentRemainingTime));
@@ -161,10 +161,10 @@ public class ClientManager : MonoBehaviour
 
     public void CompleteCurrentOrder()
     {
-        if (isWaitingForOrder)
+        if (isWaitingForOrder && !isOrderCompleted)
         {
             isOrderCompleted = true;
-
+            isWaitingForOrder = false;
             if (timerText != null)
             {
                 timerText.color = Color.blue;
