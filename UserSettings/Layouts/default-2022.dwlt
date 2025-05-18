@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -96,8 +96,8 @@ MonoBehaviour:
     y: 0
     width: 251
     height: 640
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -359,7 +359,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Liquid
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -367,16 +367,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Liquid
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\rodri\Documents\Github\Alien-Cocktail
+  m_LastProjectPath: C:\Users\usuari\Documents\GitHub\Alien-Cocktail
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 62}
-    m_SelectedIDs: 40850000
-    m_LastClickedID: 34112
-    m_ExpandedIDs: 00000000ae830000408500004a85000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: a6880000
+    m_LastClickedID: 34982
+    m_ExpandedIDs: 00000000683a00001e87000040a0000044a000004ca0000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -404,7 +404,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ae830000
+    m_ExpandedIDs: 000000001e870000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -544,23 +544,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ae850000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: da01ffffb208ffff0809ffff0a09ffff6c60ffff726fffffc86fffffb071ffff8c79ffffa691ffff70a9ffff3aaaffff90aaffffb8aaffffacdaffffd8ebffff2eecffff3ceeffff40f3ffff2afbffff
+      m_ExpandedIDs: 4a79ffff9ac7ffffaed0ffff6ae5ffff6ee5ffff7ce5ffff98e6ffff3ee7ffff96ebffffbaf2ffff1a89000022890000428900005e890000628900006a8900007689000094890000d6890000ec890000fc8900000c8a0000268a00004c8a0000568a0000668a0000908a0000968a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: UI Sample
-        m_OriginalName: UI Sample
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -36920
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -926,9 +926,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.28063086, y: 1.8758639, z: -5.3508143}
+    m_Target: {x: 1.3322504, y: 4.877851, z: 1.1625907}
     speed: 2
-    m_Value: {x: 0.28063086, y: 1.8758639, z: -5.3508143}
+    m_Value: {x: 1.3322504, y: 4.877851, z: 1.1625907}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -974,13 +974,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06022616, y: 0.1067106, z: -0.0064780656, w: 0.992469}
+    m_Target: {x: -0.04836634, y: 0.36078244, z: 0.018742684, w: 0.9312629}
     speed: 2
-    m_Value: {x: 0.060224626, y: 0.10670788, z: -0.0064779003, w: 0.9924437}
+    m_Value: {x: -0.049760528, y: 0.36073497, z: 0.019282922, w: 0.93114036}
   m_Size:
-    m_Target: 2.7130008
+    m_Target: 1.2964141
     speed: 2
-    m_Value: 2.7130008
+    m_Value: 1.2405877
   m_Ortho:
     m_Target: 0
     speed: 2
