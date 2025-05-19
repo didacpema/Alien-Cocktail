@@ -159,9 +159,7 @@ MonoBehaviour:
   resultManager: {fileID: 1069535674}
   totalOrderTime: 60
   excellentPoints: 100
-  notablePoints: 80
   goodPoints: 60
-  sufficientPoints: 40
   failedPoints: 0
 --- !u!4 &229427778
 Transform:
@@ -400,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0994ea8f3b83c54890267b52af2601b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resultsText: {fileID: 1874455668017481618, guid: 7af9b4639a1c45a499e61546692848ce, type: 3}
 --- !u!4 &1069535675
 Transform:
   m_ObjectHideFlags: 0

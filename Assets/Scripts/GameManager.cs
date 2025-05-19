@@ -31,14 +31,12 @@ public class GameManager : MonoBehaviour
     private int clientsServed;
     private bool isShiftActive;
 
-    public enum OrderGrade { Excellent, Notable, Good, Sufficient, Failed }
+    public enum OrderGrade { Excellent, Good, Failed }
     private OrderGrade lastOrderGrade;
 
     [Header("Puntuation")]
     public int excellentPoints = 100;
-    public int notablePoints = 80;
     public int goodPoints = 60;
-    public int sufficientPoints = 40;
     public int failedPoints = 0;
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -88,9 +86,19 @@ public class GameManager : MonoBehaviour
 
     //el gameManager calcula la puntuacion y el resultManager procesa y muestra los resultados finales!!
     //esta funcion deberia llamarse en el clientManager!!
-    public void CompleteOrder(bool success, float timeRemaining, string recipeName)
+    public void CompleteOrder(bool success, float timeRemaining, string recipeName = null)
     {
         if (!isShiftActive) return;
+
+        // Si no se proporciona recipeName, intentar obtenerlo del cliente actual
+        if (string.IsNullOrEmpty(recipeName))
+        {
+            recipeName = "Receta Desconocida";
+            if (clientManager != null && !clientManager.CurrentClientRecipe.Equals(default(Recipe)))
+            {
+                recipeName = clientManager.CurrentClientRecipe.name;
+            }
+        }
 
         lastOrderGrade = CalculateGrade(success, timeRemaining);
         int pointsEarned = GetPointsFromGrade(lastOrderGrade);
@@ -114,26 +122,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CompleteOrder(bool success, float timeRemaining)
-    {
-        // Intentar obtener la receta actual del cliente
-        string recipeName = "Receta Desconocida";
-        if (clientManager != null && !clientManager.CurrentClientRecipe.Equals(default(Recipe)))
-        {
-            recipeName = clientManager.CurrentClientRecipe.name;
-        }
-        
-        CompleteOrder(success, timeRemaining, recipeName);
-    }
-
     private OrderGrade CalculateGrade(bool success, float timeRemaining)
     {
         if (!success) return OrderGrade.Failed;
 
         if (timeRemaining > 45f) return OrderGrade.Excellent;
-        if (timeRemaining > 30f) return OrderGrade.Notable;
         if (timeRemaining > 15f) return OrderGrade.Good;
-        if (timeRemaining >= 0f) return OrderGrade.Sufficient;
         return OrderGrade.Failed;
     }
 
@@ -141,11 +135,10 @@ public class GameManager : MonoBehaviour
     {
         return grade switch
         {
-            OrderGrade.Excellent => excellentPoints,
-            OrderGrade.Notable => notablePoints,
-            OrderGrade.Good => goodPoints,
-            OrderGrade.Sufficient => sufficientPoints,
-            _ => failedPoints
+            OrderGrade.Excellent => excellentPoints,    // 100 puntos
+            OrderGrade.Good => goodPoints,              // 60 puntos
+            OrderGrade.Failed => failedPoints,          // 0 puntos
+            _ => 0
         };
     }
 

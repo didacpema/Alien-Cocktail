@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public struct RecipeResult
-{
-    public string recipeName;
-    public GameManager.OrderGrade grade;
-    public int points;
-    public float timeUsed;
-    public bool wasSuccessful;
-}
+using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class ResultManager : MonoBehaviour
 {
     public static ResultManager Instance { get; private set; }
 
-    [Header("Resultados")]
-    private List<RecipeResult> completedOrders = new List<RecipeResult>();
-    private int totalScore;
-    private int totalOrders;
+    [Header("UI Reference")]
+    public Text resultsText; // Asignar desde el inspector
+
+    private int totalScore = 0;
+    private int ordersCompleted = 0;
+    private List<string> recipeNames = new List<string>(); // Para guardar nombres de recetas
 
     private void Awake()
     {
@@ -36,91 +29,65 @@ public class ResultManager : MonoBehaviour
 
     public void SaveRecipeResult(string recipeName, GameManager.OrderGrade grade, int points, float timeUsed, bool wasSuccessful)
     {
-        RecipeResult result = new RecipeResult
-        {
-            recipeName = recipeName,
-            grade = grade,
-            points = points,
-            timeUsed = timeUsed,
-            wasSuccessful = wasSuccessful
-        };
-
-        completedOrders.Add(result);
-        totalOrders++;
+        ordersCompleted++;
+        recipeNames.Add(recipeName); // Solo guardar el nombre de la receta
         
-        Debug.Log($"[ResultManager] Resultado guardado: {recipeName} - {grade} - {points} puntos - Total órdenes: {totalOrders}");
-        Debug.Log($"[ResultManager] Lista tiene {completedOrders.Count} elementos");
+        Debug.Log($"[ResultManager] Guardado: {recipeName} - {points} puntos");
+        // NO agregamos nada al texto aquí, solo guardamos los datos
     }
 
     public void CalculateFinalResults(int finalScore)
     {
         totalScore = finalScore;
-        Debug.Log($"Puntuación final: {totalScore}");
-        Debug.Log($"Total de órdenes completadas: {totalOrders}");
         
-        // Calcular estadísticas adicionales
-        CalculateStatistics();
-    }
-
-    private void CalculateStatistics()
-    {
-        if (completedOrders.Count == 0) return;
-
-        int successful = 0;
-        int excellent = 0;
-        int notable = 0;
-        int good = 0;
-        int sufficient = 0;
-        int failed = 0;
-
-        foreach (var order in completedOrders)
+        // Mostrar todas las recetas preparadas
+        string allRecipes = "";
+        if (recipeNames.Count > 0)
         {
-            if (order.wasSuccessful) successful++;
-            
-            switch (order.grade)
-            {
-                case GameManager.OrderGrade.Excellent:
-                    excellent++;
-                    break;
-                case GameManager.OrderGrade.Notable:
-                    notable++;
-                    break;
-                case GameManager.OrderGrade.Good:
-                    good++;
-                    break;
-                case GameManager.OrderGrade.Sufficient:
-                    sufficient++;
-                    break;
-                case GameManager.OrderGrade.Failed:
-                    failed++;
-                    break;
-            }
+            allRecipes = "Recetas preparadas: " + string.Join(", ", recipeNames) + "\n\n";
+        }
+        
+        // Crear SOLO el resumen final
+        string finalText = $"=== RESUMEN DEL TURNO ===\n\n";
+        finalText += allRecipes;
+        finalText += $"PUNTUACIÓN TOTAL: {totalScore} puntos\n";
+        finalText += $"ÓRDENES COMPLETADAS: {ordersCompleted}\n";
+
+        // Mostrar en la UI
+        if (resultsText != null)
+        {
+            resultsText.text = finalText;
         }
 
-        float successRate = (float)successful / completedOrders.Count * 100f;
-        Debug.Log($"Tasa de éxito: {successRate:F1}%");
-        Debug.Log($"Excelente: {excellent}, Notable: {notable}, Bueno: {good}, Suficiente: {sufficient}, Fallido: {failed}");
+        Debug.Log("=== TURNO TERMINADO ===");
+        Debug.Log(finalText);
     }
 
-    // Getters para la UI
-    public List<RecipeResult> GetAllResults() => new List<RecipeResult>(completedOrders);
-    public int GetTotalScore() => totalScore;
-    public int GetTotalOrders() => totalOrders;
-    public float GetSuccessRate() 
+    private string GetGradeText(GameManager.OrderGrade grade)
     {
-        if (completedOrders.Count == 0) return 0f;
-        int successful = 0;
-        foreach (var order in completedOrders)
+        return grade switch
         {
-            if (order.wasSuccessful) successful++;
-        }
-        return (float)successful / completedOrders.Count * 100f;
+            GameManager.OrderGrade.Excellent => "Excelente",
+            GameManager.OrderGrade.Good => "Bueno",
+            GameManager.OrderGrade.Failed => "Suspendido",
+            _ => "Desconocido"
+        };
     }
 
     public void ClearResults()
     {
-        completedOrders.Clear();
         totalScore = 0;
-        totalOrders = 0;
+        ordersCompleted = 0;
+        recipeNames.Clear();
+        
+        if (resultsText != null)
+        {
+            resultsText.text = "";
+        }
     }
+
+    // Métodos públicos para acceder a los datos si necesitas
+    public int GetTotalScore() => totalScore;
+    public int GetOrdersCompleted() => ordersCompleted;
+    public List<string> GetRecipeNames() => new List<string>(recipeNames);
 }
