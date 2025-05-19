@@ -20,7 +20,7 @@ public class Wobble : MonoBehaviour
     [Header("Liquid Settings")]
     public float maxFillAmount = 1f;
     public float currentFillAmount = 1f;
-    public float pourRate = 0.2f;
+    public float pourRate = 0.05f;
     private bool isPouring = false;
 
     void Start()
