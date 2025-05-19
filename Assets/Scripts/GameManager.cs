@@ -114,18 +114,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CompleteOrder(bool success, float timeRemaining)
-    {
-        // Intentar obtener la receta actual del cliente
-        string recipeName = "Receta Desconocida";
-        if (clientManager != null && !clientManager.CurrentClientRecipe.Equals(default(Recipe)))
-        {
-            recipeName = clientManager.CurrentClientRecipe.name;
-        }
-        
-        CompleteOrder(success, timeRemaining, recipeName);
-    }
-
     private OrderGrade CalculateGrade(bool success, float timeRemaining)
     {
         if (!success) return OrderGrade.Failed;
