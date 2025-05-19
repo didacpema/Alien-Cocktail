@@ -10,11 +10,14 @@ public class CompleteOrderTrigger : MonoBehaviour
         if (!other.CompareTag("Drink")) return;
 
         ClientManager clientManager = ClientManager.Instance;
-        if (clientManager == null) return;
+        GameManager gameManager = GameManager.Instance;
+
+        if (clientManager == null || gameManager == null) return;
 
         HandleDrink(other.gameObject);
 
-        clientManager.CompleteCurrentOrder();
+        float remainingTime = clientManager.GetCurrentRemainingTime();
+        gameManager.CompleteOrder(true, remainingTime);
     }
 
     private void HandleDrink(GameObject drink)

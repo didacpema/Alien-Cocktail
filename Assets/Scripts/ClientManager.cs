@@ -28,7 +28,6 @@ public class ClientManager : MonoBehaviour
     [Header("Recipe Settings")]
     private Recipe currentClientRecipe;
     public Recipe CurrentClientRecipe => currentClientRecipe;
-    public string CurrentRecipeName => currentClientRecipe.Equals(default(Recipe)) ? "Unknown" : currentClientRecipe.name;
 
     private float currentRemainingTime;
     private bool isOrderCompleted = false;
@@ -115,31 +114,26 @@ public class ClientManager : MonoBehaviour
         currentRemainingTime = waitingTime;
         isWaitingForOrder = true;
 
-        while (currentRemainingTime > 0 && !isOrderCompleted)
+        while (currentRemainingTime > 0 && !isOrderCompleted && isWaitingForOrder)
         {
             currentRemainingTime -= Time.deltaTime;
             UpdateTimerText(Mathf.CeilToInt(currentRemainingTime));
             yield return null;
         }
 
-        bool success = isOrderCompleted;
-        float finalTime = isOrderCompleted ? currentRemainingTime : 0f;
-
-        GameManager.Instance.CompleteOrder(success, finalTime, CurrentRecipeName);
-
-        yield return ClientExitSequence();
-    }
-
-    private IEnumerator ClientExitSequence()
-    {
         HideTimer();
-        RecipeDisplay.Instance?.HideRecipe();
+        if (RecipeDisplay.Instance != null)
+        {
+            RecipeDisplay.Instance.HideRecipe();
+        }
+        isWaitingForOrder = false;
 
         yield return MoveToPosition(spawnPoint.position);
 
-        DestroyCurrentClient();
+        Destroy(currentAlien);
+        currentAlien = null;
 
-        if (ShouldEndShift())
+        if (clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift)
         {
             GameManager.Instance.EndShift();
         }
@@ -163,20 +157,6 @@ public class ClientManager : MonoBehaviour
             );
             yield return null;
         }
-    }
-
-    private void DestroyCurrentClient()
-    {
-        if (currentAlien != null)
-        {
-            Destroy(currentAlien);
-            currentAlien = null;
-        }
-    }
-
-    private bool ShouldEndShift()
-    {
-        return clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift;
     }
 
     public void CompleteCurrentOrder()
