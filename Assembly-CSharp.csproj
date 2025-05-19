@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\RecipeManager.cs" />
     <Compile Include="Assets\Liquid\Wobble.cs" />
+    <Compile Include="Assets\Scripts\StorySceneManager.cs" />
     <Compile Include="Assets\Liquid\PourDetector.cs" />
     <Compile Include="Assets\Scripts\RecipeDisplay.cs" />
     <Compile Include="Assets\Liquid\Machine.cs" />
