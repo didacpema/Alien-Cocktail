@@ -63,17 +63,6 @@ public class ResultManager : MonoBehaviour
         Debug.Log(finalText);
     }
 
-    private string GetGradeText(GameManager.OrderGrade grade)
-    {
-        return grade switch
-        {
-            GameManager.OrderGrade.Excellent => "Excelente",
-            GameManager.OrderGrade.Good => "Bueno",
-            GameManager.OrderGrade.Failed => "Suspendido",
-            _ => "Desconocido"
-        };
-    }
-
     public void ClearResults()
     {
         totalScore = 0;

@@ -149,5 +149,17 @@ public class GameManager : MonoBehaviour
         SceneLoader.Instance.LoadResultsScene();
     }
 
+    public void RestartGame()
+    {
+        currentScore = 0;
+        clientsServed = 0;
+        isShiftActive = false;
+
+        resultManager.ClearResults();
+        clientManager.ClearClients();
+
+        StartNewShift();
+    }
+
     public int GetCurrentScore() => currentScore;
 }

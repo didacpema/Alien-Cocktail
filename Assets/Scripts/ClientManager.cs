@@ -22,7 +22,7 @@ public class ClientManager : MonoBehaviour
     private int clientsSpawnedInShift = 0;
 
     [Header("UI Settings")]
-    public GameObject timerTextPrefab; 
+    public GameObject timerTextPrefab;
     public float timerHeightOffset = 0.5f;
 
     [Header("Recipe Settings")]
@@ -68,6 +68,7 @@ public class ClientManager : MonoBehaviour
     {
         clientsSpawnedInShift = 0;
         GenerateNewClient();
+        InitializeSpawnPoints();
     }
 
     public void GenerateNewClient()
@@ -86,11 +87,11 @@ public class ClientManager : MonoBehaviour
 
     private IEnumerator RetryGenerateClient()
     {
-        yield return new WaitForEndOfFrame(); 
+        yield return new WaitForEndOfFrame();
         GenerateNewClient();
     }
 
-    private IEnumerator MoveClient()
+    private IEnumerator MoveClient()    
     {
         clientsSpawnedInShift++;
         currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -213,5 +214,13 @@ public class ClientManager : MonoBehaviour
     public float GetCurrentRemainingTime()
     {
         return isWaitingForOrder ? currentRemainingTime : 0f;
+    }
+    
+    public void ClearClients()
+    {
+        clientsSpawnedInShift = 0;
+        isOrderCompleted = false;
+        isWaitingForOrder = true;
+
     }
 }

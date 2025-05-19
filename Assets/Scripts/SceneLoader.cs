@@ -19,11 +19,14 @@ public class SceneLoader : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+
     }
 
     public void LoadGameScene()
     {
         SceneManager.LoadScene("GameScene");
+        GameManager.Instance?.StartNewShift();
+        
     }
 
     public void LoadResultsScene()
