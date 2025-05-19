@@ -9,7 +9,6 @@ public class ClientManager : MonoBehaviour
     [Header("Client Settings")]
     public GameObject alienPrefab;
     public float moveSpeed = 1.5f;
-    public float timeBetweenClients = 5f;
     public float waitingTime = 90f;
 
     [Header("References")]
@@ -122,6 +121,12 @@ public class ClientManager : MonoBehaviour
             yield return null;
         }
 
+        if (isOrderCompleted)
+        {
+            if (timerText != null) timerText.color = Color.green;
+            yield return new WaitForSeconds(2f); 
+        }
+
         HideTimer();
         if (RecipeDisplay.Instance != null)
         {
@@ -130,19 +135,11 @@ public class ClientManager : MonoBehaviour
         isWaitingForOrder = false;
 
         yield return MoveToPosition(spawnPoint.position);
+        
+        GameManager.Instance.CompleteOrder(isOrderCompleted, currentRemainingTime);
 
         Destroy(currentAlien);
-        currentAlien = null;
-
-        if (clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift)
-        {
-            GameManager.Instance.EndShift();
-        }
-        else
-        {
-            yield return new WaitForSeconds(timeBetweenClients);
-            GenerateNewClient();
-        }
+        currentAlien = null; 
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition)
@@ -157,23 +154,6 @@ public class ClientManager : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
             yield return null;
-        }
-    }
-
-    public void CompleteCurrentOrder()
-    {
-        if (isWaitingForOrder && !isOrderCompleted)
-        {
-            isOrderCompleted = true;
-            isWaitingForOrder = false;
-            if (timerText != null)
-            {
-                timerText.color = Color.blue;
-            }
-            if (RecipeDisplay.Instance != null)
-            {
-                RecipeDisplay.Instance.HideRecipe();
-            }
         }
     }
 
@@ -199,7 +179,7 @@ public class ClientManager : MonoBehaviour
             int seconds = totalSeconds % 60;
 
             timerText.text = $"{minutes:00}:{seconds:00}";
-            timerText.color = totalSeconds <= 15 ? Color.red : Color.green;
+            timerText.color = totalSeconds <= 15 ? Color.red : Color.white;
         }
     }
 
@@ -222,5 +202,13 @@ public class ClientManager : MonoBehaviour
         isOrderCompleted = false;
         isWaitingForOrder = true;
 
+    }
+
+    public void CompleteOrderWithDrink()
+    {
+        if (isWaitingForOrder && !isOrderCompleted)
+        {
+            isOrderCompleted = true;
+        }
     }
 }

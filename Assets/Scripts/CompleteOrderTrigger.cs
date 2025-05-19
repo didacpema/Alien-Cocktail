@@ -10,19 +10,15 @@ public class CompleteOrderTrigger : MonoBehaviour
         if (!other.CompareTag("Drink")) return;
 
         ClientManager clientManager = ClientManager.Instance;
-        GameManager gameManager = GameManager.Instance;
-
-        if (clientManager == null || gameManager == null) return;
+        if (clientManager == null) return;
 
         HandleDrink(other.gameObject);
 
-        float remainingTime = clientManager.GetCurrentRemainingTime();
-        gameManager.CompleteOrder(true, remainingTime);
+        clientManager.CompleteOrderWithDrink();
     }
 
     private void HandleDrink(GameObject drink)
     {
-
         drink.transform.position = drinkSnapPosition.position;
         drink.transform.rotation = drinkSnapPosition.rotation;
 

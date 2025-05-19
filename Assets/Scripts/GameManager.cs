@@ -83,9 +83,6 @@ public class GameManager : MonoBehaviour
         clientManager.StartClientCycle(maxClientsPerShift);
     }
 
-
-    //el gameManager calcula la puntuacion y el resultManager procesa y muestra los resultados finales!!
-    //esta funcion deberia llamarse en el clientManager!!
     public void CompleteOrder(bool success, float timeRemaining, string recipeName = null)
     {
         if (!isShiftActive) return;
