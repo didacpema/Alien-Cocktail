@@ -74,6 +74,14 @@ public class StorySceneManager : MonoBehaviour
             }
         }
 
-        SceneLoader.Instance?.LoadGameScene();
+        if (SceneLoader.Instance == null)
+        {
+            Debug.LogError("SceneLoader.Instance es null!");
+        }
+        else
+        {
+            Debug.Log("Cargando GameScene...");
+            SceneLoader.Instance.LoadGameSceneDirectly();
+        }
     }
 }
