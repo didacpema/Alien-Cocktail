@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MatLiquidShader
+  m_Name: VliatLiquid
   m_Shader: {fileID: -6465566751694194690, guid: ab689ebecb35fd04bb281382a9be8d7a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,14 +38,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fill: -0.9
+    - _Fill: 0.9
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:
-    - _SideColor: {r: 0.8627451, g: 0, b: 0.53103894, a: 1}
-    - _TopColor: {r: 0.7156938, g: 0.105882354, b: 0.2422812, a: 1}
+    - _Color: {r: 0.7156938, g: 0.49803922, b: 0.2422812, a: 0}
+    - _SideColor: {r: 0.86274517, g: 0.6431373, b: 0.5294118, a: 1}
+    - _TopColor: {r: 0.7156938, g: 0.5254902, b: 0.2422812, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2514191867257219926
 MonoBehaviour:

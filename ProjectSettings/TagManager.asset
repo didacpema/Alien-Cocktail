@@ -8,6 +8,13 @@ TagManager:
   - Destination
   - Drink
   - Machine
+  - Vliat
+  - Guagua
+  - Woody
+  - Yini
+  - Orangina
+  - Lemongina
+  - Cocacolastic
   layers:
   - Default
   - TransparentFX

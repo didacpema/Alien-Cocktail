@@ -21,7 +21,7 @@ public class PourDetector : MonoBehaviour
         if (isPouring != pourCheck)
         {
             isPouring = pourCheck;
-            if (isPouring && wobble.currentFillAmount > 0.1f)
+            if (isPouring && wobble.currentFillAmount > -0.85f)
                 StartPour();
             else
                 EndPour();
@@ -40,6 +40,9 @@ public class PourDetector : MonoBehaviour
 
         
         currentStream = CreateStream();
+        currentStream.GetComponent<Renderer>().material.color = wobble.GetComponent<Renderer>().material.color;
+        //change the tag of the stream to match the wobble
+        currentStream.gameObject.tag = wobble.gameObject.tag;
         currentStream.Begin();
         wobble.StartPouring();
         Debug.Log("Pour Started");

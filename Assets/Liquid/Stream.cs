@@ -35,11 +35,11 @@ public class Stream : MonoBehaviour
             FindEndPoint();
             if (isHitting && HasReachedPosition(1, targetPosition))
             {
-                machine.Fill();
+                machine.Fill(gameObject.tag);
             }
             AnimateToPosition(1, targetPosition);
         }
-        if(wobble.currentFillAmount <= 0.1f)
+        if(wobble.currentFillAmount <= -0.85f)
         {
             End();
         }

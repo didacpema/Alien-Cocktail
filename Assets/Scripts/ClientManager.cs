@@ -32,6 +32,7 @@ public class ClientManager : MonoBehaviour
     private bool isOrderCompleted = false;
     private bool isWaitingForOrder = false;
 
+    private Machine machine;
     public static ClientManager Instance { get; private set; }
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -99,6 +100,7 @@ public class ClientManager : MonoBehaviour
         yield return MoveToPosition(destinationPoint.position);
 
         currentClientRecipe = RecipeManager.Instance.GetRandomRecipe();
+        machine.NewOrder(currentClientRecipe);
 
         if (currentClientRecipe.Equals(default(Recipe)))
         {
