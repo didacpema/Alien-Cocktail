@@ -7543,6 +7543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Champis
       objectReference: {fileID: 0}
+    - target: {fileID: 7574844676075339075, guid: 6fff013655d2d624caa1634d3552c058, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c3785a2baf0b1949994ed73290385c9, type: 2}
     - target: {fileID: 8343593577006243798, guid: 6fff013655d2d624caa1634d3552c058, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.468
@@ -9506,6 +9510,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6048396010157065782, guid: 6128fb953fed7a24baf03af518994ebf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eb837b1854d676944b6d7bdd39f057df, type: 2}
     - target: {fileID: 7055765213077335659, guid: 6128fb953fed7a24baf03af518994ebf, type: 3}
       propertyPath: m_Name
       value: FlorAlien
