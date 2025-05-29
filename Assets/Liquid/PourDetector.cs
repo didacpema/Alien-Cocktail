@@ -10,6 +10,7 @@ public class PourDetector : MonoBehaviour
     private Stream currentStream;
     public Wobble wobble;
     public Transform initialPosition; 
+    private float outOfBoundsDistance = 1.5f;
 
     void Start()
     {
@@ -18,6 +19,10 @@ public class PourDetector : MonoBehaviour
     void Update()
     {
         bool pourCheck = CalculatePourAngle() > pourThreshold;
+        if (Vector3.Distance(transform.position, initialPosition.position) > outOfBoundsDistance)
+        {
+            ResetPosition();
+        }
 
         if (isPouring != pourCheck)
         {
@@ -75,7 +80,10 @@ public class PourDetector : MonoBehaviour
             {
                 EndPour();
             }
-
+        }
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            ResetPosition();
         }
     }
     private void ResetPosition()

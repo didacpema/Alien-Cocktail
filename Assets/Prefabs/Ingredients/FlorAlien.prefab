@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7482518092661699964}
   m_Layer: 0
   m_Name: FlorAlien
-  m_TagString: FlorAlien
+  m_TagString: Flor Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
