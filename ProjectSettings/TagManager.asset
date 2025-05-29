@@ -15,6 +15,7 @@ TagManager:
   - Orangina
   - Lemongina
   - Cocacolastic
+  - Barra
   layers:
   - Default
   - TransparentFX

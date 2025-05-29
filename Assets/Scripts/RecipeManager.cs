@@ -15,6 +15,7 @@ public struct Ingredient
 {
     public string name;
     public IngredientType type;
+    public bool Completed;
 }
 
 [System.Serializable]
@@ -28,7 +29,7 @@ public struct Recipe
 public struct IngredientRequirement
 {
     public Ingredient ingredient;
-    public int amount;
+    public float amount;
 }
 
 public class RecipeManager : MonoBehaviour

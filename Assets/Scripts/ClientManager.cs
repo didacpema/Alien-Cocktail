@@ -100,7 +100,7 @@ public class ClientManager : MonoBehaviour
         yield return MoveToPosition(destinationPoint.position);
 
         currentClientRecipe = RecipeManager.Instance.GetRandomRecipe();
-        machine.NewOrder(currentClientRecipe);
+        Machine.Instance.NewOrder(currentClientRecipe);
 
         if (currentClientRecipe.Equals(default(Recipe)))
         {

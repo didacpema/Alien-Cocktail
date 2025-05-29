@@ -30,7 +30,7 @@ public class PourDetector : MonoBehaviour
 
     float CalculatePourAngle()
     {
-        float zAngle = 180-Mathf.Abs(180-transform.rotation.eulerAngles.z); 
+        float zAngle = 180 - Mathf.Abs(180 - transform.rotation.eulerAngles.z);
         float xAngle = 180 - Mathf.Abs(180 - transform.rotation.eulerAngles.x);
         return Mathf.Max(zAngle, xAngle);
     }
@@ -38,7 +38,7 @@ public class PourDetector : MonoBehaviour
     void StartPour()
     {
 
-        
+
         currentStream = CreateStream();
         currentStream.GetComponent<Renderer>().material.color = wobble.GetComponent<Renderer>().material.color;
         //change the tag of the stream to match the wobble
@@ -46,7 +46,7 @@ public class PourDetector : MonoBehaviour
         currentStream.Begin();
         wobble.StartPouring();
         Debug.Log("Pour Started");
-        
+
     }
 
     void EndPour()
@@ -64,5 +64,12 @@ public class PourDetector : MonoBehaviour
         streamScript.originTransform = originTransform;
         streamScript.wobble = wobble;
         return streamScript;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Barra"))
+        {
+            wobble.RefillBottle();
+        }
     }
 }

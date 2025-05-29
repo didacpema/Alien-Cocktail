@@ -58,7 +58,7 @@ public class Wobble : MonoBehaviour
         if (isPouring)
         {
             currentFillAmount -= pourRate * Time.deltaTime;
-            currentFillAmount = Mathf.Clamp(currentFillAmount, 0f, maxFillAmount);
+            currentFillAmount = Mathf.Clamp(currentFillAmount, -0.85f, maxFillAmount);
             UpdateShaderFillAmount();
         }
     }
