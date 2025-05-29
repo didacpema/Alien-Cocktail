@@ -103,7 +103,7 @@ public class Machine : MonoBehaviour
     }
     void UpdateText()
     {
-
+        Text.text = ""; // Clear the text before updating
         foreach (var req in currentRequirements)
         {
             if (req.ingredient.type == IngredientType.Liquid)
