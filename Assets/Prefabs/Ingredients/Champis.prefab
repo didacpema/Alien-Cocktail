@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: 
   initialPosition: {fileID: 9087734000737427576, guid: 59c2c8182e35b39458dcbfe2cde0b2ac, type: 3}
+  ingredientPrefab: {fileID: 2130479805231922029}
 --- !u!1001 &8348184795092812351
 PrefabInstance:
   m_ObjectHideFlags: 0

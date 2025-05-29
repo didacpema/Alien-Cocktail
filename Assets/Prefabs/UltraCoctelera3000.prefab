@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 9010836269707500961}
   - component: {fileID: 5688735505536059462}
   m_Layer: 6
-  m_Name: Collider
+  m_Name: MANAGER
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,6 +193,10 @@ MonoBehaviour:
   recipeManager: {fileID: 0}
   clientManager: {fileID: 0}
   isDone: 0
+  GoodDrinkPrefab: {fileID: 8429764213919761764, guid: 5f403bc148d702a4695f9d5472774818, type: 3}
+  ExcellentDrinkPrefab: {fileID: 8429764213919761764, guid: fa18f24a1d8aed44c9d48752ab56c077, type: 3}
+  BadDrinkPrefab: {fileID: 8429764213919761764, guid: 76472ed4bf015934390da28ac925b634, type: 3}
+  drinkTransform: {fileID: 0}
 --- !u!1 &8765599748503214951
 GameObject:
   m_ObjectHideFlags: 0

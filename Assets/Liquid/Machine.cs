@@ -14,7 +14,10 @@ public class Machine : MonoBehaviour
     public ClientManager clientManager;
     private Recipe currentRecipe;
     public bool isDone = false;
-    public GameObject drinkPrefab;
+    public GameObject GoodDrinkPrefab;
+    public GameObject ExcellentDrinkPrefab;
+    public GameObject BadDrinkPrefab;
+    int drinkRating = 0; // 0: Excellent, 1-3: Good, 3-5: Bad
     public Transform drinkTransform;
     private void Awake()
     {
@@ -44,7 +47,14 @@ public class Machine : MonoBehaviour
                 Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
             }
         }
-        if(isDone){SpawnDrink();}
+
+        if (isDone)
+        {
+            SpawnDrink();
+            isDone = false; // Reset isDone after spawning the drink
+            drinkRating = 0; // Reset drink rating for the next order
+        }
+
     }
     public void NewOrder(Recipe recipe)
     {
@@ -97,6 +107,8 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        if( currentRequirements[i].amount < 0f && currentRequirements[i].amount > -5f){drinkRating++;}
+                        else if (currentRequirements[i].amount <= -5f){drinkRating += 2;}
                         break;
                     }
                 }
@@ -112,6 +124,9 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        if( currentRequirements[i].amount < 0f && currentRequirements[i].amount > -5f){drinkRating++;}
+                        else if (currentRequirements[i].amount <= -5f){drinkRating += 2;}
+
                         break;
                     }
                 }
@@ -133,12 +148,28 @@ public class Machine : MonoBehaviour
             }
         }
     }
+
     private void SpawnDrink()
     {
-        if (drinkPrefab != null)
+        switch (drinkRating)
         {
-            Instantiate(drinkPrefab, drinkTransform.position, Quaternion.identity);
-            isDone = false;
+            case 0: // Excellent
+                Instantiate(ExcellentDrinkPrefab, drinkTransform.position, Quaternion.identity);
+                Debug.Log("Excellent drink spawned.");
+                break;
+            case 1 or 2 or 3 or 4 or 5: // Good
+                Instantiate(GoodDrinkPrefab, drinkTransform.position, Quaternion.identity);
+                Debug.Log("Good drink spawned.");
+                break;
+            case > 5: // Bad
+                Instantiate(BadDrinkPrefab, drinkTransform.position, Quaternion.identity);
+                Debug.Log("Bad drink spawned.");
+                break;
+            default:
+                Debug.LogWarning("Invalid drink rating, using default prefab.");
+                Instantiate(BadDrinkPrefab, drinkTransform.position, Quaternion.identity);
+                break;
         }
+
     }
 }
