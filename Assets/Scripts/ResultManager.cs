@@ -30,24 +30,22 @@ public class ResultManager : MonoBehaviour
     public void SaveRecipeResult(string recipeName, GameManager.OrderGrade grade, int points, float timeUsed, bool wasSuccessful)
     {
         ordersCompleted++;
-        recipeNames.Add(recipeName); // Solo guardar el nombre de la receta
-        
+        recipeNames.Add(recipeName); 
+
         Debug.Log($"[ResultManager] Guardado: {recipeName} - {points} puntos");
-        // NO agregamos nada al texto aquí, solo guardamos los datos
+        
     }
 
     public void CalculateFinalResults(int finalScore)
     {
         totalScore = finalScore;
-        
-        // Mostrar todas las recetas preparadas
+
         string allRecipes = "";
         if (recipeNames.Count > 0)
         {
             allRecipes = "Recetas preparadas: " + string.Join(", ", recipeNames) + "\n\n";
         }
-        
-        // Crear SOLO el resumen final
+
         string finalText = $"=== RESUMEN DEL TURNO ===\n\n";
         finalText += allRecipes;
         finalText += $"PUNTUACIÓN TOTAL: {totalScore} puntos\n";
@@ -68,15 +66,16 @@ public class ResultManager : MonoBehaviour
         totalScore = 0;
         ordersCompleted = 0;
         recipeNames.Clear();
-        
+
         if (resultsText != null)
         {
             resultsText.text = "";
         }
     }
 
-    // Métodos públicos para acceder a los datos si necesitas
+    
     public int GetTotalScore() => totalScore;
     public int GetOrdersCompleted() => ordersCompleted;
     public List<string> GetRecipeNames() => new List<string>(recipeNames);
+    
 }

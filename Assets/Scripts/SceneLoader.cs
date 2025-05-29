@@ -40,6 +40,8 @@ public class SceneLoader : MonoBehaviour
     {
         PlayerPrefs.SetInt(STORY_SHOWN_KEY, 1);
         SceneManager.LoadScene("StoryScene");
+        GameManager.Instance?.StartNewShift();
+        ResultManager.Instance?.ClearResults();
     }
 
     public void LoadGameSceneDirectly()

@@ -574,12 +574,12 @@ MonoBehaviour:
   - name: Allmighty
     ingredients:
     - ingredient:
-        name: Vodka
+        name: Vliat
         type: 1
         Completed: 0
       amount: 20
     - ingredient:
-        name: Whiskey
+        name: Woody
         type: 1
         Completed: 0
       amount: 40
@@ -598,10 +598,10 @@ MonoBehaviour:
         type: 0
         Completed: 0
       amount: 3
-  - name: Nebula Nectar;
+  - name: Nebula Nectar
     ingredients:
     - ingredient:
-        name: Ginebra
+        name: Yini
         type: 1
         Completed: 0
       amount: 20
@@ -628,7 +628,7 @@ MonoBehaviour:
   - name: Cosmic Kiss
     ingredients:
     - ingredient:
-        name: Ron
+        name: Guagua
         type: 1
         Completed: 0
       amount: 30
@@ -655,7 +655,7 @@ MonoBehaviour:
   - name: ZeroGravity
     ingredients:
     - ingredient:
-        name: Ginebra
+        name: Yini
         type: 1
         Completed: 0
       amount: 50
@@ -709,12 +709,12 @@ MonoBehaviour:
   - name: Sweet Lele
     ingredients:
     - ingredient:
-        name: Vodka
+        name: Vliat
         type: 1
         Completed: 0
       amount: 20
     - ingredient:
-        name: Ginebra
+        name: Yini
         type: 1
         Completed: 0
       amount: 20

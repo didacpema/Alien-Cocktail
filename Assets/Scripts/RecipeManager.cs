@@ -38,13 +38,13 @@ public class RecipeManager : MonoBehaviour
 
     [SerializeField] public Ingredient[] availableIngredients;
     [SerializeField] private Recipe[] recipes;
-    
+
     private Dictionary<string, Recipe> recipeDictionary = new Dictionary<string, Recipe>();
     private List<Ingredient> currentMix = new List<Ingredient>();
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -55,7 +55,7 @@ public class RecipeManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     // Ejemplo de c�mo seleccionar ingredientes
     public Recipe CreateCustomRecipe(IngredientRequirement[] chosenIngredients)
     {
@@ -69,9 +69,9 @@ public class RecipeManager : MonoBehaviour
     public void InitializeRecipes()
     {
         recipeDictionary.Clear();
-        foreach(Recipe recipe in recipes)
+        foreach (Recipe recipe in recipes)
         {
-            if(!recipeDictionary.ContainsKey(recipe.name))
+            if (!recipeDictionary.ContainsKey(recipe.name))
             {
                 recipeDictionary.Add(recipe.name, recipe);
             }
@@ -81,7 +81,7 @@ public class RecipeManager : MonoBehaviour
     public Recipe GetRandomRecipe()
     {
         if (recipeDictionary.Count == 0) return default;
-        
+
         List<Recipe> recipes = new List<Recipe>(recipeDictionary.Values);
         return recipes[UnityEngine.Random.Range(0, recipes.Count)];
     }
@@ -111,7 +111,7 @@ public class RecipeManager : MonoBehaviour
         foreach (var req in recipe.ingredients)
         {
             var key = (req.ingredient.name, req.ingredient.type);
-            if (!mixedGroups.TryGetValue(key, out int mixedCount) || 
+            if (!mixedGroups.TryGetValue(key, out int mixedCount) ||
                 mixedCount < req.amount)
             {
                 return false;
@@ -123,9 +123,10 @@ public class RecipeManager : MonoBehaviour
 
     public bool ValidateCurrentRecipe(List<Ingredient> mixedIngredients)
     {
-        return !ClientManager.Instance.CurrentClientRecipe.Equals(default(Recipe)) && 
+        return !ClientManager.Instance.CurrentClientRecipe.Equals(default(Recipe)) &&
             CheckRecipeMatch(ClientManager.Instance.CurrentClientRecipe, mixedIngredients);
     }
+    
     
 }
 
