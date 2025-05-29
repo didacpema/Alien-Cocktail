@@ -59,12 +59,13 @@
     <UnityVersion>2022.3.33f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\usuari\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\User\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.33f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.33f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\RecipeManager.cs" />
+    <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\AbstractTargetFollower.cs" />
     <Compile Include="Assets\Scripts\Ingredients.cs" />
     <Compile Include="Assets\Liquid\Wobble.cs" />
     <Compile Include="Assets\Scripts\StorySceneManager.cs" />
@@ -73,14 +74,18 @@
     <Compile Include="Assets\Liquid\Machine.cs" />
     <Compile Include="Assets\Liquid\Stream.cs" />
     <Compile Include="Assets\Scripts\CompleteOrderTrigger.cs" />
+    <Compile Include="Assets\SimpleToon\Scripts\SelfRotation.cs" />
     <Compile Include="Assets\Scripts\ResultManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ClientManager.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
+    <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\FreeLookCam.cs" />
+    <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\PivotBasedCameraRig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\SimpleToon\Shader\ToonLightBase.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
