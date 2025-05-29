@@ -70,7 +70,11 @@ public class PourDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Barra"))
         {
             wobble.RefillBottle();
-            EndPour();
+            if (currentStream != null)
+            {
+                EndPour();
+            }
+            
         }
     }
 }

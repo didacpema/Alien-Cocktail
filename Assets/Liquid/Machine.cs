@@ -81,9 +81,8 @@ public class Machine : MonoBehaviour
         {
             for (int i = 0; i < currentRequirements.Count; i++)
             {
-                if (currentRequirements[i].ingredient.name == tag)
+                if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
-                    // If the ingredient is already in the requirements, fill it
                     var req = currentRequirements[i];
                     req.amount -= Time.deltaTime;
                     UpdateText();
@@ -96,7 +95,21 @@ public class Machine : MonoBehaviour
                         currentRequirements[i] = ing;
                         break;
                     }
-
+                }
+                else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
+                {
+                    var req = currentRequirements[i];
+                    req.amount -= 1f; 
+                    UpdateText();
+                    currentRequirements[i] = req;
+                    // Check if the fill amount exceeds the required amount
+                    if (currentRequirements[i].amount <= 0f)
+                    {
+                        var ing = currentRequirements[i];
+                        ing.ingredient.Completed = true;
+                        currentRequirements[i] = ing;
+                        break;
+                    }
                 }
             }
         }

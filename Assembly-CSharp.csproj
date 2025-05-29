@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\RecipeManager.cs" />
+    <Compile Include="Assets\Scripts\Ingredients.cs" />
     <Compile Include="Assets\Liquid\Wobble.cs" />
     <Compile Include="Assets\Scripts\StorySceneManager.cs" />
     <Compile Include="Assets\Liquid\PourDetector.cs" />
