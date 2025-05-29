@@ -14,6 +14,8 @@ public class Machine : MonoBehaviour
     public ClientManager clientManager;
     private Recipe currentRecipe;
     public bool isDone = false;
+    public GameObject drinkPrefab;
+    public Transform drinkTransform;
     private void Awake()
     {
         if (Instance == null)
@@ -42,9 +44,11 @@ public class Machine : MonoBehaviour
                 Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
             }
         }
+        if(isDone){SpawnDrink();}
     }
     public void NewOrder(Recipe recipe)
     {
+        Text.text = "";
         currentRecipe = recipe;
         currentRequirements.Clear();
         foreach (var ingredientRequirement in currentRecipe.ingredients)
@@ -84,7 +88,7 @@ public class Machine : MonoBehaviour
                 if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    req.amount -= Time.deltaTime*4;
+                    req.amount -= Time.deltaTime * 4;
                     UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
@@ -99,7 +103,7 @@ public class Machine : MonoBehaviour
                 else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    req.amount -= 1f; 
+                    req.amount -= 1f;
                     UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
@@ -127,6 +131,14 @@ public class Machine : MonoBehaviour
             {
                 Text.text += $"{req.ingredient.name} x {req.amount}\n";
             }
+        }
+    }
+    private void SpawnDrink()
+    {
+        if (drinkPrefab != null)
+        {
+            Instantiate(drinkPrefab, drinkTransform.position, Quaternion.identity);
+            isDone = false;
         }
     }
 }
