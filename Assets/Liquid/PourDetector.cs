@@ -10,7 +10,7 @@ public class PourDetector : MonoBehaviour
     private Stream currentStream;
     public Wobble wobble;
     public Transform initialPosition; 
-    private float outOfBoundsDistance = 1.5f;
+    private float outOfBoundsDistance = 3f;
 
     void Start()
     {

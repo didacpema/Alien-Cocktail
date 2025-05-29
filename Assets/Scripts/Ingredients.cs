@@ -43,6 +43,6 @@ public class Ingredients : MonoBehaviour
     private void ResetPosition()
     {
         Destroy(gameObject);
-        GameObject newIngredient = Instantiate(ingredientPrefab, initialPosition.position, Quaternion.identity);
+        Instantiate(ingredientPrefab, initialPosition.position, Quaternion.identity);
     }
 }

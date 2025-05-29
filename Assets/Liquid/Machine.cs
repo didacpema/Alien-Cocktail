@@ -84,7 +84,7 @@ public class Machine : MonoBehaviour
                 if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    req.amount -= Time.deltaTime;
+                    req.amount -= Time.deltaTime*2;
                     UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
