@@ -29,7 +29,7 @@ Material:
     - _RimStep: 0.497
     - _SpecularStep: 0.109
     m_Colors:
-    - _BaseColor: {r: 0.19589551, g: 0.0495283, b: 0.1981132, a: 1}
+    - _BaseColor: {r: 0.85758543, g: 0.8584906, b: 0.7815504, a: 1}
     - _Color: {r: 0.23584905, g: 0.034487363, b: 0.034487363, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0.5803922}
   m_BuildTextureStacks: []
