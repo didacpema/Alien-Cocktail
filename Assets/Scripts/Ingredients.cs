@@ -41,7 +41,9 @@ public class Ingredients : MonoBehaviour
     }
     private void ResetPosition()
     {
-        Destroy(gameObject);
-        Instantiate(gameObject, initialPosition.position, Quaternion.identity);
+        transform.position = initialPosition.position;
+        transform.rotation = initialPosition.rotation;
+        GetComponent<Rigidbody>().velocity = Vector3.zero; // Reset velocity
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset angular velocity
     }
 }

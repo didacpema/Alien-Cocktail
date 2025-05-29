@@ -9,6 +9,7 @@ public class PourDetector : MonoBehaviour
     private bool isPouring = false;
     private Stream currentStream;
     public Wobble wobble;
+    public Transform initialPosition; 
 
     void Start()
     {
@@ -74,7 +75,14 @@ public class PourDetector : MonoBehaviour
             {
                 EndPour();
             }
-            
+
         }
+    }
+    private void ResetPosition()
+    {
+        transform.position = initialPosition.position;
+        transform.rotation = initialPosition.rotation;
+        GetComponent<Rigidbody>().velocity = Vector3.zero; // Reset velocity
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset angular velocity
     }
 }
