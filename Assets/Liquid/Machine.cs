@@ -54,7 +54,7 @@ public class Machine : MonoBehaviour
                 ingredient = ingredientRequirement.ingredient,
                 amount = ingredientRequirement.amount
             });
-            if(ingredientRequirement.ingredient.type == IngredientType.Liquid)
+            if (ingredientRequirement.ingredient.type == IngredientType.Liquid)
             {
                 Text.text += $"{ingredientRequirement.ingredient.name}  {ingredientRequirement.amount}ml\n";
             }
@@ -62,7 +62,7 @@ public class Machine : MonoBehaviour
             {
                 Text.text += $"{ingredientRequirement.ingredient.name} x {ingredientRequirement.amount}\n";
             }
-            
+
         }
         fillAmount = 0f; // Reset fill amount for new order
     }
@@ -79,24 +79,40 @@ public class Machine : MonoBehaviour
         }
         else
         {
-            for(int i = 0; i < currentRequirements.Count; i++)
+            for (int i = 0; i < currentRequirements.Count; i++)
             {
                 if (currentRequirements[i].ingredient.name == tag)
                 {
                     // If the ingredient is already in the requirements, fill it
                     var req = currentRequirements[i];
                     req.amount -= Time.deltaTime;
+                    UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
-                    if (currentRequirements[i].amount <= 0f )
+                    if (currentRequirements[i].amount <= 0f)
                     {
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
-                        break; 
+                        break;
                     }
-                    
+
                 }
+            }
+        }
+    }
+    void UpdateText()
+    {
+
+        foreach (var req in currentRequirements)
+        {
+            if (req.ingredient.type == IngredientType.Liquid)
+            {
+                Text.text += $"{req.ingredient.name}  {req.amount}ml\n";
+            }
+            else
+            {
+                Text.text += $"{req.ingredient.name} x {req.amount}\n";
             }
         }
     }
