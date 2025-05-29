@@ -9,6 +9,7 @@ public class Ingredients : MonoBehaviour
     private Machine machine;
     public Transform initialPosition;
     private float outOfBoundsDistance = 1.5f;
+    public GameObject ingredientPrefab;
 
     void Start()
     {
@@ -41,9 +42,7 @@ public class Ingredients : MonoBehaviour
     }
     private void ResetPosition()
     {
-        transform.position = initialPosition.position;
-        transform.rotation = initialPosition.rotation;
-        GetComponent<Rigidbody>().velocity = Vector3.zero; // Reset velocity
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset angular velocity
+        Destroy(gameObject);
+        GameObject newIngredient = Instantiate(ingredientPrefab, initialPosition.position, Quaternion.identity);
     }
 }

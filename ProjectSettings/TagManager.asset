@@ -17,13 +17,13 @@ TagManager:
   - Cocacolastic
   - Barra
   - Tentaculos
-  - Limon
   - Hierbabuena
   - Champis
-  - Hueso
-  - FlorAlien
-  - FrutaDelDragon
   - Floor
+  - DragonFruit
+  - Flor Alien
+  - Huesos
+  - BlueLemon
   layers:
   - Default
   - TransparentFX

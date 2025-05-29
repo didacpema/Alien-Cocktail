@@ -7255,6 +7255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Champis
       objectReference: {fileID: 0}
+    - target: {fileID: 6224217064618536906, guid: 6fff013655d2d624caa1634d3552c058, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 2130479805231922029, guid: 6fff013655d2d624caa1634d3552c058, type: 3}
     - target: {fileID: 8343593577006243798, guid: 6fff013655d2d624caa1634d3552c058, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.468
@@ -7352,6 +7356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hueso
       objectReference: {fileID: 0}
+    - target: {fileID: 4222721094890574164, guid: 72a9ed3cdba9a3343a1eb0d8af0efbf5, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 3201283988232246623, guid: 72a9ed3cdba9a3343a1eb0d8af0efbf5, type: 3}
     - target: {fileID: 6965149272217525933, guid: 72a9ed3cdba9a3343a1eb0d8af0efbf5, type: 3}
       propertyPath: m_Renderer
       value: 
@@ -7413,6 +7421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrutaDelDragon
       objectReference: {fileID: 0}
+    - target: {fileID: 2676231643119459858, guid: 70b58c02dbcc9674982e386f2ef43de3, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 735459554254225626, guid: 70b58c02dbcc9674982e386f2ef43de3, type: 3}
     - target: {fileID: 6361890768208221248, guid: 70b58c02dbcc9674982e386f2ef43de3, type: 3}
       propertyPath: m_Renderer
       value: 
@@ -7760,6 +7772,10 @@ PrefabInstance:
       propertyPath: m_Renderer
       value: 
       objectReference: {fileID: 1559991141}
+    - target: {fileID: 3891290411191401302, guid: 0170328f996983341bcfa2c30b72e3f5, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 6534883609164423575, guid: 0170328f996983341bcfa2c30b72e3f5, type: 3}
     - target: {fileID: 6534883609164423575, guid: 0170328f996983341bcfa2c30b72e3f5, type: 3}
       propertyPath: m_Name
       value: Hierbabuena
@@ -8064,6 +8080,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2840920582236912483, guid: 19c317403c0046140932f7147a9d0ce6, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 4965375407580087465, guid: 19c317403c0046140932f7147a9d0ce6, type: 3}
     - target: {fileID: 4965375407580087465, guid: 19c317403c0046140932f7147a9d0ce6, type: 3}
       propertyPath: m_Name
       value: Tentaculos
@@ -9194,6 +9214,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7482518092661699964, guid: 6128fb953fed7a24baf03af518994ebf, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 7055765213077335659, guid: 6128fb953fed7a24baf03af518994ebf, type: 3}
     - target: {fileID: 1533711805905888492, guid: 6128fb953fed7a24baf03af518994ebf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.427
@@ -9413,6 +9437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Limon
       objectReference: {fileID: 0}
+    - target: {fileID: 3088574146991465673, guid: 5d1261f23789afa43bbe54d7b3f129b9, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 1328350341239761654, guid: 5d1261f23789afa43bbe54d7b3f129b9, type: 3}
     - target: {fileID: 9064668779238488908, guid: 5d1261f23789afa43bbe54d7b3f129b9, type: 3}
       propertyPath: m_Renderer
       value: 
@@ -9430,14 +9458,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1782513322749119303, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.248
-      objectReference: {fileID: 0}
-    - target: {fileID: 1782513322749119303, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 3.652
-      objectReference: {fileID: 0}
     - target: {fileID: 2359887744453449959, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
       propertyPath: m_Name
       value: UltraCoctelera3000
@@ -9486,50 +9506,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1731298971}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017402181125366946, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
