@@ -14,9 +14,7 @@ public class Machine : MonoBehaviour
     public ClientManager clientManager;
     private Recipe currentRecipe;
     public bool isDone = false;
-    public GameObject GoodDrinkPrefab;
-    public GameObject ExcellentDrinkPrefab;
-    public GameObject BadDrinkPrefab;
+    public GameObject DrinkPrefab;
     int drinkRating = 0; // 0: Excellent, 1-3: Good, 3-5: Bad
     public Transform drinkTransform;
     private void Awake()
@@ -34,7 +32,8 @@ public class Machine : MonoBehaviour
     }
     void Start()
     {
-
+        recipeManager = FindAnyObjectByType<RecipeManager>();
+        clientManager = FindAnyObjectByType<ClientManager>();
     }
 
     void Update()
@@ -52,7 +51,6 @@ public class Machine : MonoBehaviour
         {
             SpawnDrink();
             isDone = false; // Reset isDone after spawning the drink
-            drinkRating = 0; // Reset drink rating for the next order
         }
 
     }
@@ -151,24 +149,41 @@ public class Machine : MonoBehaviour
 
     private void SpawnDrink()
     {
-        switch (drinkRating)
+        switch (currentRecipe.name)
         {
-            case 0: // Excellent
-                Instantiate(ExcellentDrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Excellent drink spawned.");
+            case "Allmighty": // Excellent
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "Allmighty";
+                Debug.Log("Allmighty drink spawned.");
                 break;
-            case 1 or 2 or 3 or 4 or 5: // Good
-                Instantiate(GoodDrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Good drink spawned.");
+            case "Nebula Nectar": // Good
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "Nebula Nectar";
+                Debug.Log("Nebula Nectar drink spawned.");
                 break;
-            case > 5: // Bad
-                Instantiate(BadDrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Bad drink spawned.");
+            case "Cosmic Kiss": // Bad
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "Cosmic Kiss";
+                Debug.Log("Cosmic Kiss drink spawned.");
+                break;
+            case "ZeroGravity": // Bad
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "ZeroGravity";
+                Debug.Log("ZeroGravity drink spawned.");
+                break;
+            case "Stellar Seduction": // Bad
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "Stellar Seduction";
+                Debug.Log("Stellar Seduction drink spawned.");
+                break;
+            case "Sweet Lele": // Bad
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
+                DrinkPrefab.gameObject.tag = "Sweet Lele";
+                Debug.Log("Sweet Lele drink spawned.");
                 break;
             default:
-                Debug.LogWarning("Invalid drink rating, using default prefab.");
-                Instantiate(BadDrinkPrefab, drinkTransform.position, Quaternion.identity);
-                break;
+                Debug.LogWarning($"Unknown recipe: {currentRecipe.name}. No drink spawned.");
+                return;
         }
 
     }

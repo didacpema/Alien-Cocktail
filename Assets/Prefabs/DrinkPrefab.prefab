@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3595947085948549743}
   - component: {fileID: 8305788746687983635}
   m_Layer: 0
-  m_Name: ExcellentDrink
+  m_Name: DrinkPrefab
   m_TagString: Drink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

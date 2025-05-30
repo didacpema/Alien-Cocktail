@@ -188,10 +188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UltraCoctelera3000
       objectReference: {fileID: 0}
-    - target: {fileID: 2359887744453449959, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3137832234787160669, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.196
