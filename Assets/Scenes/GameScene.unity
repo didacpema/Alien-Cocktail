@@ -9726,6 +9726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UltraCoctelera3000
       objectReference: {fileID: 0}
+    - target: {fileID: 2359887744453449959, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2685731531089632914, guid: fc1ed51cd4101dc4a86b4a6111d1efe2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

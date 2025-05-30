@@ -12,6 +12,7 @@ public class Machine : MonoBehaviour
     public TextMeshProUGUI Text;
     public RecipeManager recipeManager;
     public ClientManager clientManager;
+    private CompleteOrderTrigger completeOrderTrigger;
     private Recipe currentRecipe;
     public bool isDone = false;
     public GameObject DrinkPrefab;
@@ -34,6 +35,7 @@ public class Machine : MonoBehaviour
     {
         recipeManager = FindAnyObjectByType<RecipeManager>();
         clientManager = FindAnyObjectByType<ClientManager>();
+        completeOrderTrigger = FindAnyObjectByType<CompleteOrderTrigger>();
     }
 
     void Update()
@@ -149,6 +151,7 @@ public class Machine : MonoBehaviour
 
     private void SpawnDrink()
     {
+        completeOrderTrigger.Drink(currentRecipe.name);
         switch (currentRecipe.name)
         {
             case "Allmighty": // Excellent
