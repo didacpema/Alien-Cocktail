@@ -8,7 +8,6 @@ public class Machine : MonoBehaviour
     public static Machine Instance { get; private set; }
     private List<IngredientRequirement> currentRequirements = new List<IngredientRequirement>();
 
-    public float fillAmount = 0f;
     public TextMeshProUGUI Text;
     public RecipeManager recipeManager;
     public ClientManager clientManager;
@@ -16,7 +15,6 @@ public class Machine : MonoBehaviour
     private Recipe currentRecipe;
     public bool isDone = false;
     public GameObject DrinkPrefab;
-    int drinkRating = 0; // 0: Excellent, 1-3: Good, 3-5: Bad
     public Transform drinkTransform;
     private void Awake()
     {
@@ -78,11 +76,6 @@ public class Machine : MonoBehaviour
             }
 
         }
-        fillAmount = 0f; // Reset fill amount for new order
-    }
-    public float GetMachineFillAmount()
-    {
-        return fillAmount;
     }
 
     public void Fill(string tag)
@@ -98,7 +91,9 @@ public class Machine : MonoBehaviour
                 if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    req.amount -= Time.deltaTime * 4;
+                    if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
+                    else {req.amount = 0; }
+
                     UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
@@ -107,15 +102,14 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
-                        if( currentRequirements[i].amount < 0f && currentRequirements[i].amount > -5f){drinkRating++;}
-                        else if (currentRequirements[i].amount <= -5f){drinkRating += 2;}
                         break;
                     }
                 }
                 else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    req.amount -= 1f;
+                    if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
+                    else {req.amount = 0; }
                     UpdateText();
                     currentRequirements[i] = req;
                     // Check if the fill amount exceeds the required amount
@@ -124,9 +118,6 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
-                        if( currentRequirements[i].amount < 0f && currentRequirements[i].amount > -5f){drinkRating++;}
-                        else if (currentRequirements[i].amount <= -5f){drinkRating += 2;}
-
                         break;
                     }
                 }

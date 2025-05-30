@@ -44,10 +44,6 @@ public class Ingredients : MonoBehaviour
     {
         Destroy(gameObject);
         GameObject newIngredient = Instantiate(ingredientPrefab, initialPosition.position, Quaternion.identity);
-        if(newIngredient.GetComponent<Ingredients>() == null)
-        {
-            newIngredient.AddComponent<Ingredients>();
-        }
-
+        newIngredient.AddComponent<Ingredients>();
     }
 }
