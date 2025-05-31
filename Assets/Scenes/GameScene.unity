@@ -17118,6 +17118,10 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1531991369857644152, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0003
+      objectReference: {fileID: 0}
     - target: {fileID: 1613154432856560149, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
