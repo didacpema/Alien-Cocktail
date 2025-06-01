@@ -10,11 +10,13 @@ public class Ingredients : MonoBehaviour
     public Transform initialPosition;
     private float outOfBoundsDistance = 1.5f;
     public GameObject ingredientPrefab;
+    private IngredientSpawner ingredientSpawner;
 
     void Start()
     {
         ingredientName = gameObject.tag;
         machine = GameObject.FindGameObjectWithTag("Machine").GetComponent<Machine>();
+        ingredientSpawner = FindObjectOfType<IngredientSpawner>();
     }
 
     void Update()
@@ -42,8 +44,7 @@ public class Ingredients : MonoBehaviour
     }
     private void ResetPosition()
     {
+        ingredientSpawner.SpawnIngredient(ingredientName, initialPosition);
         Destroy(gameObject);
-        GameObject newIngredient = Instantiate(ingredientPrefab, initialPosition.position, Quaternion.identity);
-        newIngredient.AddComponent<Ingredients>();
     }
 }
