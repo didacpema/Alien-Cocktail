@@ -12,7 +12,9 @@ public class ClientManager : MonoBehaviour
     public float waitingTime = 90f;
 
     [Header("References")]
-    private Transform spawnPoint;
+    private Transform[] spawnPoints;
+    private Transform currentSpawnPoint;
+    private Transform intermediatePoint;
     private Transform destinationPoint;
     private GameObject currentAlien;
     private bool pointsInitialized = false;
@@ -55,10 +57,18 @@ public class ClientManager : MonoBehaviour
     }
     private void InitializeSpawnPoints()
     {
-        pointsInitialized = false;
-        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;
+        GameObject[] spawnPointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        spawnPoints = new Transform[spawnPointObjects.Length];
+        for (int i = 0; i < spawnPointObjects.Length; i++)
+        {
+            spawnPoints[i] = spawnPointObjects[i].transform;
+        }
+
+        intermediatePoint = GameObject.FindGameObjectWithTag("IntermediatePoint")?.transform;
         destinationPoint = GameObject.FindGameObjectWithTag("Destination")?.transform;
-        pointsInitialized = spawnPoint != null && destinationPoint != null;
+
+        pointsInitialized = spawnPoints.Length > 0 && intermediatePoint != null && destinationPoint != null;
 
         if (!pointsInitialized)
             Debug.LogError("Failed to initialize spawn points");
@@ -101,9 +111,12 @@ public class ClientManager : MonoBehaviour
 
         clientsSpawnedInShift++;
         Debug.Log($"Generando cliente {clientsSpawnedInShift}/{GameManager.Instance.maxClientsPerShift}");
-        currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        currentSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)]; 
+        currentAlien = Instantiate(alienPrefab, currentSpawnPoint.position, currentSpawnPoint.rotation);
         isOrderCompleted = false;
 
+        yield return MoveToPosition(intermediatePoint.position);
         yield return MoveToPosition(destinationPoint.position);
 
         currentClientRecipe = RecipeManager.Instance.GetRandomRecipe();
@@ -143,8 +156,10 @@ public class ClientManager : MonoBehaviour
         }
         isWaitingForOrder = false;
 
-        yield return MoveToPosition(spawnPoint.position);
-        
+        yield return RotateInPlace(180f);
+        yield return MoveToPosition(intermediatePoint.position);
+        yield return MoveToPosition(currentSpawnPoint.position);
+
         GameManager.Instance.CompleteOrder(isOrderCompleted, currentRemainingTime);
 
         Destroy(currentAlien);
@@ -157,9 +172,41 @@ public class ClientManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    private IEnumerator RotateInPlace(float angle)
     {
         if (currentAlien == null) yield break;
+
+        Quaternion startRotation = currentAlien.transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(0f, angle, 0f);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2f; 
+            currentAlien.transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            yield return null;
+        }
+    }
+
+    private IEnumerator MoveToPosition(Vector3 targetPosition, bool lookAtTarget = true)
+    {
+        if (currentAlien == null) yield break;
+
+        Vector3 direction = (targetPosition - currentAlien.transform.position).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            while (Quaternion.Angle(currentAlien.transform.rotation, lookRotation) > 1f)
+            {
+                currentAlien.transform.rotation = Quaternion.Slerp(
+                    currentAlien.transform.rotation,
+                    lookRotation,
+                    Time.deltaTime * 5f
+                );
+                yield return null;
+            }
+        }
 
         while (Vector3.Distance(currentAlien.transform.position, targetPosition) > 0.1f)
         {
