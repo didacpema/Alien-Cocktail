@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrOrigin: {fileID: 1661856967}
   interactionManager: {fileID: 1528654132}
-  maxClientsPerShift: 1
+  maxClientsPerShift: 2
   recipeManager: {fileID: 1188740402}
   clientManager: {fileID: 1553478436}
   resultManager: {fileID: 1069535674}

@@ -67,8 +67,9 @@ public class ClientManager : MonoBehaviour
     public void StartClientCycle(int maxClients)
     {
         clientsSpawnedInShift = 0;
-        GenerateNewClient();
+        Debug.Log($"Preparando ciclo de clientes. Máximo: {maxClients}");
         InitializeSpawnPoints();
+        GenerateNewClient();
     }
 
     public void GenerateNewClient()
@@ -93,7 +94,13 @@ public class ClientManager : MonoBehaviour
 
     private IEnumerator MoveClient()    
     {
+        if (clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift)
+        {
+            yield break;
+        }
+
         clientsSpawnedInShift++;
+        Debug.Log($"Generando cliente {clientsSpawnedInShift}/{GameManager.Instance.maxClientsPerShift}");
         currentAlien = Instantiate(alienPrefab, spawnPoint.position, spawnPoint.rotation);
         isOrderCompleted = false;
 
@@ -141,7 +148,13 @@ public class ClientManager : MonoBehaviour
         GameManager.Instance.CompleteOrder(isOrderCompleted, currentRemainingTime);
 
         Destroy(currentAlien);
-        currentAlien = null; 
+        currentAlien = null;
+
+        if (clientsSpawnedInShift < GameManager.Instance.maxClientsPerShift)
+        {
+            yield return new WaitForSeconds(1f); 
+            GenerateNewClient();
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition)

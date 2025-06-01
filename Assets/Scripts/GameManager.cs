@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Game Settings")]
-    public int maxClientsPerShift = 1; //cambiar a 5 más adelante
+    public int maxClientsPerShift = 2; //cambiar a 5 más adelante
 
 
     [Header("Managers")]
@@ -112,10 +112,6 @@ public class GameManager : MonoBehaviour
         if (clientsServed >= maxClientsPerShift)
         {
             EndShift();
-        }
-        else
-        {
-            clientManager.GenerateNewClient(); 
         }
     }
 
