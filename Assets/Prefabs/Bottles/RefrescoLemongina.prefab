@@ -167,15 +167,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0718
+      value: 1.0165198
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9724739
+      value: 2.9724736
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1868
+      value: 0.36018094
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -220,6 +220,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_Name
       value: RefrescoLemongina
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
+      propertyPath: m_TagString
+      value: Lemongina
       objectReference: {fileID: 0}
     - target: {fileID: 5737342259207048066, guid: 9864fc01b8a8b0a44b592250163d532c, type: 3}
       propertyPath: m_LocalPosition.z
