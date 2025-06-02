@@ -3,12 +3,34 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnPoint
+  - IntermediatePoint
+  - Yini
+  - Cocacolastic
+  - Tentaculos
+  - Woody
+  - Champis
+  - Drink
+  - Vliat
+  - BlueLemon
+  - Huesos
+  - Hielo
+  - Flor Alien
+  - Floor
+  - Barra
+  - Destination
+  - DragonFruit
+  - SettingsCanvas
+  - Orangina
+  - Lemongina
+  - Machine
+  - Guagua
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Machine
   - Water
   - UI
   - 

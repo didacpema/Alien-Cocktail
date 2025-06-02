@@ -94,8 +94,8 @@ public class Machine : MonoBehaviour
                     if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
                     else {req.amount = 0; }
 
-                    UpdateText();
                     currentRequirements[i] = req;
+                    UpdateText();
                     // Check if the fill amount exceeds the required amount
                     if (currentRequirements[i].amount <= 0f)
                     {
@@ -105,13 +105,13 @@ public class Machine : MonoBehaviour
                         break;
                     }
                 }
-                else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
+                else if (currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= 1; }
                     else {req.amount = 0; }
-                    UpdateText();
                     currentRequirements[i] = req;
+                    UpdateText();
                     // Check if the fill amount exceeds the required amount
                     if (currentRequirements[i].amount <= 0f)
                     {
