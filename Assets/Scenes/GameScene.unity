@@ -787,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 606613905}
     - target: {fileID: 6112446511521751753, guid: 701eba062868c1849a8cbbf2eaf1276e, type: 3}
       propertyPath: m_Name
-      value: BotellaGuagua
+      value: Guagua
       objectReference: {fileID: 0}
     - target: {fileID: 6888278835929036915, guid: 701eba062868c1849a8cbbf2eaf1276e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10930,7 +10930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5625263730557639768, guid: 77943151e2b702c439fc65be8e241829, type: 3}
       propertyPath: m_Name
-      value: BotellaWoody
+      value: Woody
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11407,7 +11407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691414573778839816, guid: ebeb68f25774adc428faf5538ecae2a8, type: 3}
       propertyPath: m_Name
-      value: RefrescoOrangina
+      value: Orangina
       objectReference: {fileID: 0}
     - target: {fileID: 8056719993686227825, guid: ebeb68f25774adc428faf5538ecae2a8, type: 3}
       propertyPath: initialPosition
@@ -18870,7 +18870,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2359292183472313602, guid: c9f27cfaa46b90541b7490f7436875eb, type: 3}
       propertyPath: m_Name
-      value: RefrescoCocacolastic
+      value: Cocacolastic
       objectReference: {fileID: 0}
     - target: {fileID: 3167775537075146680, guid: c9f27cfaa46b90541b7490f7436875eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19168,7 +19168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021372147007031506, guid: bff3860c280d7ca4d9fdf4507f862c6c, type: 3}
       propertyPath: m_Name
-      value: RefrescoLemongina
+      value: Lemongina
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19635,7 +19635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4319673945765869891, guid: ca693f93cdb18424a8584a734feb31a8, type: 3}
       propertyPath: m_Name
-      value: BotellaYini
+      value: Yini
       objectReference: {fileID: 0}
     - target: {fileID: 5914292471786969808, guid: ca693f93cdb18424a8584a734feb31a8, type: 3}
       propertyPath: initialPosition
@@ -20366,7 +20366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 908653671077768237, guid: e286959a6f0b64443bac3f6d902dac3a, type: 3}
       propertyPath: m_Name
-      value: BotellaVliat
+      value: Vliat
       objectReference: {fileID: 0}
     - target: {fileID: 3371143445196267193, guid: e286959a6f0b64443bac3f6d902dac3a, type: 3}
       propertyPath: initialPosition
@@ -20519,7 +20519,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
