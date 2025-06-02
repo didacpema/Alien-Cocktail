@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6495541529749821810}
   m_Layer: 0
   m_Name: Liquid
-  m_TagString: Orangina
+  m_TagString: Guagua
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
