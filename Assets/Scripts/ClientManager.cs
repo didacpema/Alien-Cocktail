@@ -115,6 +115,10 @@ public class ClientManager : MonoBehaviour
 
         currentSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         currentAlien = Instantiate(alienPrefab, currentSpawnPoint.position, currentSpawnPoint.rotation);
+        //random color for the alien
+        currentAlien.GetComponent<Renderer>().material.color = 
+            new Color(Random.value, Random.value, Random.value);
+
         isOrderCompleted = false;
 
         yield return MoveToPosition(intermediatePoint.position);
