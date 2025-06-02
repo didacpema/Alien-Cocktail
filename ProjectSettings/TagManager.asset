@@ -25,6 +25,8 @@ TagManager:
   - Huesos
   - BlueLemon
   - IntermediatePoint
+  - Anchor
+  - SettingsCanvas
   layers:
   - Default
   - TransparentFX
