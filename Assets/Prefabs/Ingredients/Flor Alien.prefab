@@ -9,16 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4065784
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4065784
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4065784
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4352982
+      value: -1.4377
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.731279
+      value: 2.7235
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.647
+      value: 0.64942
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fb2356e10aaa44f449e00a0131b13259, type: 3}
       propertyPath: m_LocalRotation.w
@@ -109,8 +121,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.019453308, y: 0.016190805, z: 0.007239997}
-  m_Center: {x: -0.00006343145, y: -0.00006366754, z: -0.00032289117}
+  m_Size: {x: 0.09958975, y: 0.08334587, z: 0.039323226}
+  m_Center: {x: 0.00025708764, y: 0.00033663728, z: -0.0015960324}
 --- !u!54 &8839226207148970469
 Rigidbody:
   m_ObjectHideFlags: 0
