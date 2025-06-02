@@ -508,26 +508,31 @@ MonoBehaviour:
         name: Vliat
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Woody
         type: 1
         Completed: 0
+        Done: 0
       amount: 40
     - ingredient:
         name: Huesos
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Hielo
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
     - ingredient:
         name: DragonFruit
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
   - name: Nebula Nectar
     ingredients:
@@ -535,26 +540,31 @@ MonoBehaviour:
         name: Yini
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Cocacolastic
         type: 1
         Completed: 0
+        Done: 0
       amount: 50
     - ingredient:
         name: Flor Alien
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Hielo
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: DragonFruit
         type: 0
         Completed: 0
+        Done: 0
       amount: 1
   - name: Cosmic Kiss
     ingredients:
@@ -562,53 +572,63 @@ MonoBehaviour:
         name: Guagua
         type: 1
         Completed: 0
+        Done: 0
       amount: 30
     - ingredient:
         name: Lemongina
         type: 1
         Completed: 0
+        Done: 0
       amount: 40
     - ingredient:
         name: BlueLemon
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Hielo
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
     - ingredient:
         name: Tentaculos
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
-  - name: ZeroGravity
+  - name: Zero Gravity
     ingredients:
     - ingredient:
         name: Yini
         type: 1
         Completed: 0
+        Done: 0
       amount: 50
     - ingredient:
         name: Orangina
         type: 1
         Completed: 0
+        Done: 0
       amount: 50
     - ingredient:
         name: Champis
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Hielo
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Hierbabuena
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
   - name: Stellar Seduction
     ingredients:
@@ -616,26 +636,31 @@ MonoBehaviour:
         name: Orangina
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Lemongina
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Cocacolastic
         type: 1
         Completed: 0
+        Done: 0
       amount: 10
     - ingredient:
         name: FlorAlien
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
     - ingredient:
         name: Hierbabuena
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
   - name: Sweet Lele
     ingredients:
@@ -643,26 +668,31 @@ MonoBehaviour:
         name: Vliat
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Yini
         type: 1
         Completed: 0
+        Done: 0
       amount: 20
     - ingredient:
         name: Champis
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Tentaculos
         type: 0
         Completed: 0
+        Done: 0
       amount: 2
     - ingredient:
         name: Huesos
         type: 0
         Completed: 0
+        Done: 0
       amount: 3
 --- !u!4 &1188740403
 Transform:
@@ -1148,6 +1178,10 @@ PrefabInstance:
     - target: {fileID: 5663893676086941514, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RayInteractor
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Height
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6678509202150728127, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_InteractionManager

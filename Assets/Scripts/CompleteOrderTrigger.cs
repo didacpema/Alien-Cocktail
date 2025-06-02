@@ -16,23 +16,19 @@ public class CompleteOrderTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if(other.CompareTag(DrinkName))
+        if(other.CompareTag("Drink"))
         {
             HandleDrink(other.gameObject);
             clientManager.CompleteOrderWithDrink();
             return;
         }
-        if (!other.CompareTag(DrinkName))
+        else
         { 
             Debug.LogWarning($"Drink {other.name} does not match the expected drink: {DrinkName}");
             return;
         }
 
     }
-    public void Drink(string RecName)
-    {
-        DrinkName = RecName;
-    }  
     private void HandleDrink(GameObject drink)
     {
         drink.transform.position = drinkSnapPosition.position;

@@ -59,19 +59,11 @@ public class Machine : MonoBehaviour
         //         Debug.Log("Order completed!");
         //     }
         // }
-        
-
-        if (isDone)
-        {
-            SpawnDrink();
-            isDone = false; // Reset isDone after spawning the drink
-            currentDone = 0;
-        }
 
     }
     private void UpdateOrder()
     {
-        if (!isDone && currentRequirements.Count != 0)
+        if (!isDone )
         {
             for (int i = 0; i < currentRequirements.Count; i++)
             {
@@ -87,6 +79,7 @@ public class Machine : MonoBehaviour
             {
                 isDone = true;
                 currentDone = 0; // Reset currentDone after checking
+                SpawnDrink();
             }
         }
     }
@@ -94,7 +87,15 @@ public class Machine : MonoBehaviour
     {
         Text.text = "";
         currentRecipe = recipe;
+        for (int i = 0; i < currentRequirements.Count; i++)
+        {
+            var ing = currentRequirements[i];
+            ing.ingredient.Done = false;
+            ing.ingredient.Completed = false;
+            currentRequirements[i] = ing;
+        }
         currentRequirements.Clear();
+        currentDone = 0;
         foreach (var ingredientRequirement in currentRecipe.ingredients)
         {
             currentRequirements.Add(new IngredientRequirement
@@ -180,43 +181,6 @@ public class Machine : MonoBehaviour
 
     private void SpawnDrink()
     {
-        completeOrderTrigger.Drink(currentRecipe.name);
-        switch (currentRecipe.name)
-        {
-            case "Allmighty":
-                DrinkPrefab.gameObject.tag = "Allmighty";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Allmighty drink spawned.");
-                break;
-            case "Nebula Nectar":
-                DrinkPrefab.gameObject.tag = "Nebula Nectar";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Nebula Nectar drink spawned.");
-                break;
-            case "Cosmic Kiss": 
-                DrinkPrefab.gameObject.tag = "Cosmic Kiss";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Cosmic Kiss drink spawned.");
-                break;
-            case "ZeroGravity":
-                DrinkPrefab.gameObject.tag = "Zero Gravity";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("ZeroGravity drink spawned.");
-                break;
-            case "Stellar Seduction":
-                DrinkPrefab.gameObject.tag = "Stellar Seduction";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Stellar Seduction drink spawned.");
-                break;
-            case "Sweet Lele": 
-                DrinkPrefab.gameObject.tag = "Sweet Lele";
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
-                Debug.Log("Sweet Lele drink spawned.");
-                break;
-            default:
-                Debug.LogWarning($"Unknown recipe: {currentRecipe.name}. No drink spawned.");
-                return;
-        }
-
+        GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
     }
 }
