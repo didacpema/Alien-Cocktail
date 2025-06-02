@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alienPrefab: {fileID: 8662636160180397186, guid: 76bf16fa3bbbd4241a8a72590df8d2c0, type: 3}
   moveSpeed: 1.5
-  waitingTime: 10
+  waitingTime: 180
   isMoving: 1
   excellentAnim: 1
   goodAnim: 1
