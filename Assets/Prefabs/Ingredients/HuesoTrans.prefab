@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5305049036780557529
+--- !u!1 &4670431160316635573
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4499631987654009763}
+  - component: {fileID: 3944992592098911619}
   m_Layer: 0
   m_Name: HuesoTrans
   m_TagString: Untagged
@@ -16,17 +16,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4499631987654009763
+--- !u!4 &3944992592098911619
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305049036780557529}
+  m_GameObject: {fileID: 4670431160316635573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.446, y: 2.734, z: 0.632}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -1.4144814, y: 2.7058208, z: 0.45769674}
+  m_LocalScale: {x: 437.55884, y: 79.0349, z: 79.0349}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
