@@ -16,6 +16,7 @@ public struct Ingredient
     public string name;
     public IngredientType type;
     public bool Completed;
+    public bool Done;
 }
 
 [System.Serializable]

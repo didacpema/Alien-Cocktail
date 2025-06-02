@@ -15,7 +15,6 @@ public class Machine : MonoBehaviour
     private CompleteOrderTrigger completeOrderTrigger;
     private Recipe currentRecipe;
     public bool isDone = false;
-    private List<String> completedDrinkName = new List<string>();
     private int currentDone = 0;
     public GameObject DrinkPrefab;
     public Transform drinkTransform;
@@ -43,19 +42,17 @@ public class Machine : MonoBehaviour
     {
         if (!isDone && currentRequirements.Count != 0)
         {
-            foreach (var req in currentRequirements)
+            for (int i = 0; i < currentRequirements.Count; i++)
             {
-                foreach (var ing in completedDrinkName)
+                if(currentRequirements[i].ingredient.Completed && currentRequirements[i].ingredient.Done == false)
                 {
-                    if (req.ingredient.Completed)
-                    {
-                        if (req.ingredient.name == ing) return;
-                        currentDone++;
-                        completedDrinkName.Add(req.ingredient.name);
-                    }
+                    var ing = currentRequirements[i];
+                    ing.ingredient.Done = true;
+                    currentRequirements[i] = ing;
+                    currentDone++;
                 }
             }
-            if (currentDone == currentRequirements.Count)
+            if (currentDone == 5)
             {
                 isDone = true;
                 currentDone = 0; // Reset currentDone after checking
@@ -69,7 +66,6 @@ public class Machine : MonoBehaviour
             SpawnDrink();
             isDone = false; // Reset isDone after spawning the drink
             currentDone = 0;
-            completedDrinkName.Clear();
         }
 
     }
