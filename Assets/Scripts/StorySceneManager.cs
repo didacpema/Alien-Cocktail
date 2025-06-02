@@ -5,14 +5,20 @@ using TMPro;
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class StoryPhrase
+{
+    [TextArea(3, 10)]
+    public string text;
+    public float displayTime = 3f;
+}
+
 public class StorySceneManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI storyText;
-    [SerializeField] private float timePerPhrase = 3f;
     [SerializeField] private Canvas storyCanvas;
-
-    [TextArea(3, 10)]
-    [SerializeField] private string[] storyPhrases;
+    [SerializeField] private StoryPhrase[] storyPhrases;
+    [SerializeField] private float typingSpeed = 30f;
 
     private void Start()
     {
@@ -33,7 +39,6 @@ public class StorySceneManager : MonoBehaviour
         {
             storyCanvas.renderMode = RenderMode.WorldSpace;
             storyCanvas.worldCamera = Camera.main;
-
             CanvasFaceCamera();
         }
         else
@@ -54,34 +59,33 @@ public class StorySceneManager : MonoBehaviour
 
     private IEnumerator ShowStory()
     {
-        if (storyPhrases == null || storyPhrases.Length == 0)
-        {
-            Debug.LogError("No hay frases configuradas en StorySceneManager");
-            yield break;
-        }
-
-        foreach (string phrase in storyPhrases)
+        foreach (StoryPhrase phrase in storyPhrases)
         {
             if (storyText != null)
             {
-                storyText.text = phrase;
-                yield return new WaitForSeconds(timePerPhrase);
+                yield return StartCoroutine(TypeText(phrase.text));
+                yield return new WaitForSeconds(phrase.displayTime);
             }
             else
             {
-                Debug.LogError("storyText no está asignado en el inspector");
                 yield break;
             }
         }
 
-        if (SceneLoader.Instance == null)
+        if (SceneLoader.Instance != null)
         {
-            Debug.LogError("SceneLoader.Instance es null!");
-        }
-        else
-        {
-            Debug.Log("Cargando GameScene...");
             SceneLoader.Instance.LoadGameSceneDirectly();
+        }
+    }
+
+    private IEnumerator TypeText(string textToType)
+    {
+        storyText.text = "";
+
+        foreach (char letter in textToType.ToCharArray())
+        {
+            storyText.text += letter;
+            yield return new WaitForSeconds(1f / typingSpeed);
         }
     }
 }
