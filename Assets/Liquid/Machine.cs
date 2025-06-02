@@ -14,6 +14,7 @@ public class Machine : MonoBehaviour
     private CompleteOrderTrigger completeOrderTrigger;
     private Recipe currentRecipe;
     public bool isDone = false;
+    private int currentDone = 0;
     public GameObject DrinkPrefab;
     public Transform drinkTransform;
     private void Awake()
@@ -40,9 +41,10 @@ public class Machine : MonoBehaviour
     {
         foreach (var req in currentRequirements)
         {
-            if (req.amount <= 0f && !req.ingredient.Completed)
+            if (currentDone == 5)
             {
                 isDone = true; // Mark the machine as done when all requirements are met
+                currentDone = 0; // Reset currentDone for the next recipe
                 Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
             }
         }
@@ -102,6 +104,7 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        currentDone++;
                         break;
                     }
                 }
@@ -118,6 +121,7 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        currentDone++;
                         break;
                     }
                 }
