@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4441038
+      value: -1.4352982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8488724
+      value: 2.8488722
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2646575
+      value: 1.333
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 08f862656357592408c10b0579484f5b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a101bf64219a2b040b7350831b55f20c, type: 2}
     - target: {fileID: 919132149155446097, guid: ac6c64e3a94968e4eb2d93b0c386e71c, type: 3}
       propertyPath: m_Name
       value: Tentaculos

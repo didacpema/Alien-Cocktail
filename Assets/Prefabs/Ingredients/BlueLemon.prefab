@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4441038
+      value: -1.4352982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7391863
+      value: 2.739186
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2646575
+      value: 1.053
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbbec8091474891429dbaecd41d4233b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d507d89916e37d478447570796be0ba, type: 2}
     - target: {fileID: 919132149155446097, guid: 57b8fdb84ba8d5040a8ff8ccd2672b96, type: 3}
       propertyPath: m_Name
       value: BlueLemon
