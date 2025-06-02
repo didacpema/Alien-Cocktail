@@ -40,6 +40,37 @@ public class Machine : MonoBehaviour
 
     void Update()
     {
+        // if (!isDone && currentRequirements.Count != 0)
+        // {
+        //     for (int i = 0; i < currentRequirements.Count; i++)
+        //     {
+        //         if(currentRequirements[i].ingredient.Completed && currentRequirements[i].ingredient.Done == false)
+        //         {
+        //             var ing = currentRequirements[i];
+        //             ing.ingredient.Done = true;
+        //             currentRequirements[i] = ing;
+        //             currentDone++;
+        //         }
+        //     }
+        //     if (currentDone == 5)
+        //     {
+        //         isDone = true;
+        //         currentDone = 0; // Reset currentDone after checking
+        //         Debug.Log("Order completed!");
+        //     }
+        // }
+        
+
+        if (isDone)
+        {
+            SpawnDrink();
+            isDone = false; // Reset isDone after spawning the drink
+            currentDone = 0;
+        }
+
+    }
+    private void UpdateOrder()
+    {
         if (!isDone && currentRequirements.Count != 0)
         {
             for (int i = 0; i < currentRequirements.Count; i++)
@@ -56,18 +87,8 @@ public class Machine : MonoBehaviour
             {
                 isDone = true;
                 currentDone = 0; // Reset currentDone after checking
-                Debug.Log("Order completed!");
             }
         }
-        
-
-        if (isDone)
-        {
-            SpawnDrink();
-            isDone = false; // Reset isDone after spawning the drink
-            currentDone = 0;
-        }
-
     }
     public void NewOrder(Recipe recipe)
     {
@@ -117,6 +138,7 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        UpdateOrder();
                         break;
                     }
                 }
@@ -133,6 +155,7 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        UpdateOrder();
                         break;
                     }
                 }
@@ -160,32 +183,32 @@ public class Machine : MonoBehaviour
         completeOrderTrigger.Drink(currentRecipe.name);
         switch (currentRecipe.name)
         {
-            case "Allmighty": // Excellent
+            case "Allmighty":
                 DrinkPrefab.gameObject.tag = "Allmighty";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Allmighty drink spawned.");
                 break;
-            case "Nebula Nectar": // Good
+            case "Nebula Nectar":
                 DrinkPrefab.gameObject.tag = "Nebula Nectar";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Nebula Nectar drink spawned.");
                 break;
-            case "Cosmic Kiss": // Bad
+            case "Cosmic Kiss": 
                 DrinkPrefab.gameObject.tag = "Cosmic Kiss";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Cosmic Kiss drink spawned.");
                 break;
-            case "ZeroGravity": // Bad
-                DrinkPrefab.gameObject.tag = "ZeroGravity";
+            case "ZeroGravity":
+                DrinkPrefab.gameObject.tag = "Zero Gravity";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("ZeroGravity drink spawned.");
                 break;
-            case "Stellar Seduction": // Bad
+            case "Stellar Seduction":
                 DrinkPrefab.gameObject.tag = "Stellar Seduction";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Stellar Seduction drink spawned.");
                 break;
-            case "Sweet Lele": // Bad
+            case "Sweet Lele": 
                 DrinkPrefab.gameObject.tag = "Sweet Lele";
                 Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Sweet Lele drink spawned.");
