@@ -11967,6 +11967,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.20784314
       objectReference: {fileID: 0}
+    - target: {fileID: 3180519032719465932, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 9294aa4f1a72ba7498310b87fa8a31fa, type: 3}
+    - target: {fileID: 3256187282751581122, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76741
+      objectReference: {fileID: 0}
     - target: {fileID: 3485237904901723751, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
       propertyPath: m_Color.b
       value: 0.6509804
@@ -11978,6 +11986,14 @@ PrefabInstance:
     - target: {fileID: 3485237904901723751, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
       propertyPath: m_Color.r
       value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485237904901723751, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 9294aa4f1a72ba7498310b87fa8a31fa, type: 3}
+    - target: {fileID: 3552558670039834729, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.77589715
       objectReference: {fileID: 0}
     - target: {fileID: 4645410389870774701, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
       propertyPath: m_Color.b
@@ -12166,6 +12182,14 @@ PrefabInstance:
     - target: {fileID: 7345008040801210652, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494129590582741688, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 9294aa4f1a72ba7498310b87fa8a31fa, type: 3}
+    - target: {fileID: 7494129590582741688, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8038442149113288693, guid: 79baae9492ba95a4ea875c7021e36b63, type: 3}
       propertyPath: m_Color.b
@@ -18290,6 +18314,18 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2915521258159332830, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 30462f5ba4c7988499e358859c1e720a, type: 2}
+    - target: {fileID: 2915521258159332830, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2192662487899326804, guid: 30462f5ba4c7988499e358859c1e720a, type: 2}
+    - target: {fileID: 2915521258159332830, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3303201797796288986, guid: 1218e03b2947e6e41be3768d3866381c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.046203
@@ -19527,9 +19563,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9294aa4f1a72ba7498310b87fa8a31fa, type: 3}
     m_FontSize: 30
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
@@ -21226,8 +21262,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30462f5ba4c7988499e358859c1e720a, type: 2}
+  m_sharedMaterial: {fileID: 2192662487899326804, guid: 30462f5ba4c7988499e358859c1e720a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
