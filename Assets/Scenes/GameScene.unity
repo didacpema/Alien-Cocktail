@@ -20502,7 +20502,7 @@ MonoBehaviour:
   recipeManager: {fileID: 0}
   clientManager: {fileID: 0}
   isDone: 0
-  DrinkPrefab: {fileID: 3394967827266438996, guid: bbdf49a4b375fda4abbaf33ec2229eea, type: 3}
+  DrinkPrefab: {fileID: 483799195081618129, guid: 37b5ab8e04ec031448932b7dc37021cd, type: 3}
   drinkTransform: {fileID: 407093053}
 --- !u!65 &1808507504
 BoxCollider:
