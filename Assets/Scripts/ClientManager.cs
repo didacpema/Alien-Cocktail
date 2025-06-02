@@ -8,6 +8,7 @@ public class ClientManager : MonoBehaviour
 {
     [Header("Client Settings")]
     public GameObject alienPrefab;
+    public bool isMoving = true;
     public float moveSpeed = 1.5f;
     public float waitingTime = 90f;
 
@@ -32,7 +33,7 @@ public class ClientManager : MonoBehaviour
 
     private float currentRemainingTime;
     private bool isOrderCompleted = false;
-    private bool isWaitingForOrder = false;
+    public bool isWaitingForOrder = false;
 
     private Machine machine;
     public static ClientManager Instance { get; private set; }
@@ -77,7 +78,7 @@ public class ClientManager : MonoBehaviour
     public void StartClientCycle(int maxClients)
     {
         clientsSpawnedInShift = 0;
-        Debug.Log($"Preparando ciclo de clientes. Máximo: {maxClients}");
+        Debug.Log($"Preparando ciclo de clientes. Mï¿½ximo: {maxClients}");
         InitializeSpawnPoints();
         GenerateNewClient();
     }
@@ -102,7 +103,7 @@ public class ClientManager : MonoBehaviour
         GenerateNewClient();
     }
 
-    private IEnumerator MoveClient()    
+    private IEnumerator MoveClient()
     {
         if (clientsSpawnedInShift >= GameManager.Instance.maxClientsPerShift)
         {
@@ -112,12 +113,13 @@ public class ClientManager : MonoBehaviour
         clientsSpawnedInShift++;
         Debug.Log($"Generando cliente {clientsSpawnedInShift}/{GameManager.Instance.maxClientsPerShift}");
 
-        currentSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)]; 
+        currentSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         currentAlien = Instantiate(alienPrefab, currentSpawnPoint.position, currentSpawnPoint.rotation);
         isOrderCompleted = false;
 
         yield return MoveToPosition(intermediatePoint.position);
         yield return MoveToPosition(destinationPoint.position);
+        isMoving = false;
 
         currentClientRecipe = RecipeManager.Instance.GetRandomRecipe();
         Machine.Instance.NewOrder(currentClientRecipe);
@@ -146,7 +148,7 @@ public class ClientManager : MonoBehaviour
         if (isOrderCompleted)
         {
             if (timerText != null) timerText.color = Color.green;
-            yield return new WaitForSeconds(2f); 
+            yield return new WaitForSeconds(2f);
         }
 
         HideTimer();
@@ -167,7 +169,7 @@ public class ClientManager : MonoBehaviour
 
         if (clientsSpawnedInShift < GameManager.Instance.maxClientsPerShift)
         {
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(1f);
             GenerateNewClient();
         }
     }
@@ -182,7 +184,7 @@ public class ClientManager : MonoBehaviour
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime * 2f; 
+            t += Time.deltaTime * 2f;
             currentAlien.transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
             yield return null;
         }
@@ -190,6 +192,7 @@ public class ClientManager : MonoBehaviour
 
     private IEnumerator MoveToPosition(Vector3 targetPosition, bool lookAtTarget = true)
     {
+        isMoving = true;
         if (currentAlien == null) yield break;
 
         Vector3 direction = (targetPosition - currentAlien.transform.position).normalized;
@@ -257,7 +260,7 @@ public class ClientManager : MonoBehaviour
     {
         return isWaitingForOrder ? currentRemainingTime : 0f;
     }
-    
+
     public void ClearClients()
     {
         clientsSpawnedInShift = 0;

@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: efe654d77cdbcfd4d966fbbcaa4eb2f4, type: 2}
     - target: {fileID: 919132149155446097, guid: 6855b5f56e4bc4b4b9f64bd2e2d2a621, type: 3}
       propertyPath: m_Name
-      value: alien 1
+      value: alien
       objectReference: {fileID: 0}
     - target: {fileID: 2754969801676242025, guid: 6855b5f56e4bc4b4b9f64bd2e2d2a621, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -107,6 +107,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6855b5f56e4bc4b4b9f64bd2e2d2a621, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2728993142234552069}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6855b5f56e4bc4b4b9f64bd2e2d2a621, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5324672601084185608}
   m_SourcePrefab: {fileID: 100100000, guid: 6855b5f56e4bc4b4b9f64bd2e2d2a621, type: 3}
 --- !u!1 &8662636160180397186 stripped
 GameObject:
@@ -134,3 +137,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5324672601084185608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662636160180397186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062fe6eea58c3b241bd06ca7662f5708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alienAnimator: {fileID: 2728993142234552069}
+  animationSpeed: 1
