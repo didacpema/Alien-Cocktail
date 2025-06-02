@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
     {
         if (!success) return OrderGrade.Failed;
 
-        if (timeRemaining > 45f) return OrderGrade.Excellent;
+        if (timeRemaining > 100f) return OrderGrade.Excellent;
         if (timeRemaining > 15f) return OrderGrade.Good;
         return OrderGrade.Failed;
     }
