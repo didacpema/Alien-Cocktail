@@ -96,6 +96,7 @@ public class Machine : MonoBehaviour
         }
         currentRequirements.Clear();
         currentDone = 0;
+        isDone = false;
         foreach (var ingredientRequirement in currentRecipe.ingredients)
         {
             currentRequirements.Add(new IngredientRequirement
