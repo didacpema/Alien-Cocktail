@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b325cd29a07bd1b4f9acd65c6e4f16b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pourThreshold: 45
+  pourThreshold: 90
   originTransform: {fileID: 3531659619337829779}
   streamPrefab: {fileID: 7172284883455637228, guid: fe696ffb03efe684ca2a956167f74f2b, type: 3}
   wobble: {fileID: 37133347075155054}
