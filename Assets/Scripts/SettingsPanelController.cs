@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class SettingsPanelController : MonoBehaviour
 {
     [Header("UI")]
-   [SerializeField] private Canvas settingsPanelCanvas;
+    [SerializeField] private Canvas settingsPanelCanvas;
+    [SerializeField] private Slider volumeSlider;
     private const string SETTINGS_CANVAS_TAG = "SettingsCanvas";
 
 
@@ -16,9 +17,24 @@ public class SettingsPanelController : MonoBehaviour
     {
         EnsureCanvasReference();
         InitializeSettingsPanel();
+        InitializeVolumeSlider();
         LogCurrentPanelStatus();
     }
-     private void EnsureCanvasReference()
+
+    private void InitializeVolumeSlider()
+    {
+        if (volumeSlider != null && globalAudioSource != null)
+        {
+            volumeSlider.value = globalAudioSource.volume;
+            volumeSlider.onValueChanged.AddListener(AdjustVolume);
+        }
+        else
+        {
+            Debug.LogError("Slider o AudioSource no asignados en el Inspector", this);
+        }
+    }
+
+    private void EnsureCanvasReference()
     {
         // Si no está asignado en el inspector, intentar encontrarlo
         if (settingsPanelCanvas == null)
@@ -131,6 +147,7 @@ public class SettingsPanelController : MonoBehaviour
          if (globalAudioSource != null)
         {
             globalAudioSource.volume = Mathf.Clamp01(value);
+            Debug.Log($"Volumen ajustado a: {globalAudioSource.volume}");
         }
     }
 }
