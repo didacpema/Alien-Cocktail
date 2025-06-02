@@ -1131,7 +1131,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c2ece6f3f57fb4e41bc21424890a430d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3ce903b916cc314d80ce669e03c24d1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1289,6 +1289,8 @@ MonoBehaviour:
   - text: Don't f*ck it up...
     displayTime: 1
   typingSpeed: 30
+  audioSource: {fileID: 1249730913}
+  fadeDuration: 1.5
 --- !u!1 &1757724121
 GameObject:
   m_ObjectHideFlags: 0
