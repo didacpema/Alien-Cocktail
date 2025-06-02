@@ -72,7 +72,7 @@ public class SettingsPanelController : MonoBehaviour
         }
 
         settingsPanelCanvas.gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     public void ResumeGame()
