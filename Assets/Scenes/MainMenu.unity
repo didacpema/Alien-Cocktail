@@ -1072,9 +1072,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alienPrefab: {fileID: 8662636160180397186, guid: 76bf16fa3bbbd4241a8a72590df8d2c0, type: 3}
-  isMoving: 1
   moveSpeed: 1.5
-  waitingTime: 180
+  waitingTime: 10
+  isMoving: 1
+  excellentAnim: 1
+  goodAnim: 1
+  failedAnim: 1
   timerTextPrefab: {fileID: 5052174348646440146, guid: be6f6f6527fd4f04097ff0d7998389a7, type: 3}
   timerHeightOffset: 1.5
   isWaitingForOrder: 0
@@ -1954,6 +1957,18 @@ PrefabInstance:
     - target: {fileID: 8180815008627773159, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_SizeDelta.y
       value: 93.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180815008627773159, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2828
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180815008627773159, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2828
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180815008627773159, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2828
       objectReference: {fileID: 0}
     - target: {fileID: 8180815008627773159, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_AnchoredPosition.x

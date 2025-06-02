@@ -9,7 +9,10 @@ public class AlienAnimationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (alienAnimator == null)
+        {
+            alienAnimator = GetComponent<Animator>();
+        }
     }
 
     // Update is called once per frame
@@ -25,5 +28,20 @@ public class AlienAnimationScript : MonoBehaviour
             alienAnimator.SetBool("isMoving", false);
             //alienAnimator.speed = 0.0f; // Stop the animation when not moving
         }
+    }
+
+    public void PlayExcellentAnimation()
+    {
+        alienAnimator.SetTrigger("excellentAnim");
+    }
+
+    public void PlayGoodAnimation()
+    {
+        alienAnimator.SetTrigger("goodAnim");
+    }
+
+    public void PlayFailedAnimation()
+    {
+        alienAnimator.SetTrigger("failedAnim");
     }
 }

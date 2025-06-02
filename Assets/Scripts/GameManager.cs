@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private bool isShiftActive;
 
     public enum OrderGrade { Excellent, Good, Failed }
-    private OrderGrade lastOrderGrade;
+    public OrderGrade lastOrderGrade { get; set; }
 
     [Header("Puntuation")]
     public int excellentPoints = 100;

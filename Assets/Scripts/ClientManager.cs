@@ -8,11 +8,15 @@ public class ClientManager : MonoBehaviour
 {
     [Header("Client Settings")]
     public GameObject alienPrefab;
-    public bool isMoving = true;
     public float moveSpeed = 1.5f;
     public float waitingTime = 90f;
 
-    [Header("References")]
+    [Header("Anim Settings")]
+    public bool isMoving = true;
+    public bool excellentAnim = true;
+    public bool goodAnim = true;
+    public bool failedAnim = true;
+
     private Transform[] spawnPoints;
     private Transform currentSpawnPoint;
     private Transform intermediatePoint;
@@ -146,7 +150,11 @@ public class ClientManager : MonoBehaviour
             yield return null;
         }
 
-        if (isOrderCompleted)
+        if (!isOrderCompleted && currentRemainingTime <= 0)
+        {
+            GameManager.Instance.lastOrderGrade = GameManager.OrderGrade.Failed;
+        }
+        else if (isOrderCompleted)
         {
             if (timerText != null) timerText.color = Color.green;
             yield return new WaitForSeconds(2f);
@@ -158,6 +166,8 @@ public class ClientManager : MonoBehaviour
             RecipeDisplay.Instance.HideRecipe();
         }
         isWaitingForOrder = false;
+
+        yield return HandlePostOrderAnimation();
 
         yield return RotateInPlace(180f);
         yield return MoveToPosition(intermediatePoint.position);
@@ -173,6 +183,43 @@ public class ClientManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             GenerateNewClient();
         }
+    }
+
+    private IEnumerator HandlePostOrderAnimation()
+    {
+        GameManager.OrderGrade grade = GameManager.Instance.lastOrderGrade;
+        float animationWaitTime = 2f;
+
+        if (currentAlien != null)
+        {
+            AlienAnimationScript animScript = currentAlien.GetComponent<AlienAnimationScript>();
+            if (animScript != null)
+            {
+                switch (grade)
+                {
+                    case GameManager.OrderGrade.Excellent:
+                        animScript.PlayExcellentAnimation();
+                        Debug.Log("Disparando animación Excellent");
+                    break;
+
+                    case GameManager.OrderGrade.Good:
+                        animScript.PlayGoodAnimation();
+                        Debug.Log("Disparando animación Good");
+                    break;
+
+                    case GameManager.OrderGrade.Failed:
+                        animScript.PlayFailedAnimation();
+                        Debug.Log("Disparando animación Failed");
+                    break;
+
+                    default:
+                    break;
+                }
+            }
+        }
+
+
+        yield return new WaitForSeconds(animationWaitTime);
     }
 
     private IEnumerator RotateInPlace(float angle)

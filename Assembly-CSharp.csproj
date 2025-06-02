@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SettingsPanelController.cs" />
     <Compile Include="Assets\Scripts\RecipeManager.cs" />
+    <Compile Include="Assets\Scripts\AlienAnimationScript.cs" />
     <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\AbstractTargetFollower.cs" />
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\Ingredients.cs" />
