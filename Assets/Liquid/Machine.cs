@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class Machine : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Machine : MonoBehaviour
     private CompleteOrderTrigger completeOrderTrigger;
     private Recipe currentRecipe;
     public bool isDone = false;
+    private List<String> completedDrinkName = new List<string>();
     private int currentDone = 0;
     public GameObject DrinkPrefab;
     public Transform drinkTransform;
@@ -39,13 +41,26 @@ public class Machine : MonoBehaviour
 
     void Update()
     {
-
-        
-         if (currentDone == 5)
-         {
-            isDone = true; // Mark the machine as done when all requirements are met
-            currentDone = 0; // Reset currentDone for the next recipe
-            Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
+        if (!isDone && currentRequirements.Count != 0)
+        {
+            foreach (var req in currentRequirements)
+            {
+                foreach (var ing in completedDrinkName)
+                {
+                    if (req.ingredient.Completed)
+                    {
+                        if (req.ingredient.name == ing) return;
+                        currentDone++;
+                        completedDrinkName.Add(req.ingredient.name);
+                    }
+                }
+            }
+            if (currentDone == currentRequirements.Count)
+            {
+                isDone = true;
+                currentDone = 0; // Reset currentDone after checking
+                Debug.Log("Order completed!");
+            }
         }
         
 
@@ -53,6 +68,8 @@ public class Machine : MonoBehaviour
         {
             SpawnDrink();
             isDone = false; // Reset isDone after spawning the drink
+            currentDone = 0;
+            completedDrinkName.Clear();
         }
 
     }
@@ -104,7 +121,6 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
-                        currentDone++;
                         break;
                     }
                 }
@@ -121,7 +137,6 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
-                        currentDone++;
                         break;
                     }
                 }
@@ -150,33 +165,33 @@ public class Machine : MonoBehaviour
         switch (currentRecipe.name)
         {
             case "Allmighty": // Excellent
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "Allmighty";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Allmighty drink spawned.");
                 break;
             case "Nebula Nectar": // Good
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "Nebula Nectar";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Nebula Nectar drink spawned.");
                 break;
             case "Cosmic Kiss": // Bad
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "Cosmic Kiss";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Cosmic Kiss drink spawned.");
                 break;
             case "ZeroGravity": // Bad
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "ZeroGravity";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("ZeroGravity drink spawned.");
                 break;
             case "Stellar Seduction": // Bad
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "Stellar Seduction";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Stellar Seduction drink spawned.");
                 break;
             case "Sweet Lele": // Bad
-                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 DrinkPrefab.gameObject.tag = "Sweet Lele";
+                Instantiate(DrinkPrefab, drinkTransform.position, Quaternion.identity);
                 Debug.Log("Sweet Lele drink spawned.");
                 break;
             default:
