@@ -39,15 +39,15 @@ public class Machine : MonoBehaviour
 
     void Update()
     {
-        foreach (var req in currentRequirements)
-        {
-            if (currentDone == 5)
-            {
-                isDone = true; // Mark the machine as done when all requirements are met
-                currentDone = 0; // Reset currentDone for the next recipe
-                Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
-            }
+
+        
+         if (currentDone == 5)
+         {
+            isDone = true; // Mark the machine as done when all requirements are met
+            currentDone = 0; // Reset currentDone for the next recipe
+            Debug.Log($"Machine is done with recipe: {currentRecipe.name}");
         }
+        
 
         if (isDone)
         {
