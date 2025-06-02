@@ -108,7 +108,7 @@ public class Machine : MonoBehaviour
                 else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
                 {
                     var req = currentRequirements[i];
-                    if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
+                    if (req.amount > 0f) { req.amount -= 1; }
                     else {req.amount = 0; }
                     UpdateText();
                     currentRequirements[i] = req;
