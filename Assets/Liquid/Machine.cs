@@ -21,6 +21,10 @@ public class Machine : MonoBehaviour
     public GameObject DrinkPrefab;
     public Transform drinkTransform;
     public Animator animator;
+    public AudioSource nomSound;
+    public AudioSource drinkSound;
+    public AudioSource preparatingSound;
+    public AudioSource badSound;
     private void Awake()
     {
         if (Instance == null)
@@ -199,6 +203,7 @@ public class Machine : MonoBehaviour
     private void SpawnDrink()
     {
         animator.SetTrigger("prepare");
+        preparatingSound.Play();
         StartCoroutine(ResetToIdle(7.33f)); 
         GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
     }
