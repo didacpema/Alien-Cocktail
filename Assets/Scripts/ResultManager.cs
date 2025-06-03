@@ -39,7 +39,7 @@ public class ResultManager : MonoBehaviour
     public void CalculateFinalResults(int finalScore)
     {
         totalScore = finalScore;
-
+        FindResultsTextIfNull(); 
         string allRecipes = "";
         if (recipeNames.Count > 0)
         {
@@ -73,6 +73,22 @@ public class ResultManager : MonoBehaviour
         }
     }
 
+    private void FindResultsTextIfNull()
+{
+    if (resultsText == null)
+    {
+        
+        GameObject resultsObject = GameObject.Find("Result");
+        if (resultsObject != null)
+        {
+            resultsText = resultsObject.GetComponent<Text>();
+            Debug.Log("[ResultManager] Referencia UI encontrada dinámicamente");
+        }
+        
+        
+        // resultsText = GameObject.FindWithTag("ResultsUI")?.GetComponent<Text>();
+    }
+}
     
     public int GetTotalScore() => totalScore;
     public int GetOrdersCompleted() => ordersCompleted;

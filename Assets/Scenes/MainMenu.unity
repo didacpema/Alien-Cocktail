@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrOrigin: {fileID: 1661856967}
   interactionManager: {fileID: 1528654132}
-  maxClientsPerShift: 2
+  maxClientsPerShift: 3
   recipeManager: {fileID: 1188740402}
   clientManager: {fileID: 1553478436}
   resultManager: {fileID: 1069535674}
@@ -711,7 +711,7 @@ MonoBehaviour:
         Done: 0
       amount: 10
     - ingredient:
-        name: FlorAlien
+        name: Flor Alien
         type: 0
         Completed: 0
         Done: 0
