@@ -86,7 +86,7 @@ public class ResultManager : MonoBehaviour
         }
         
         
-        // resultsText = GameObject.FindWithTag("ResultsUI")?.GetComponent<Text>();
+        resultsText = GameObject.FindWithTag("ResultsUI")?.GetComponent<Text>();
     }
 }
     

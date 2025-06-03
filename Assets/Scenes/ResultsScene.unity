@@ -1746,6 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Result
       objectReference: {fileID: 0}
+    - target: {fileID: 1388981770870193476, guid: 7af9b4639a1c45a499e61546692848ce, type: 3}
+      propertyPath: m_TagString
+      value: ResultsUI
+      objectReference: {fileID: 0}
     - target: {fileID: 1874455668017481618, guid: 7af9b4639a1c45a499e61546692848ce, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
