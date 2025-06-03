@@ -33,7 +33,6 @@ public class Stream : MonoBehaviour
             if (!Machine.Instance.drinkSound.isPlaying)
             {
                 Machine.Instance.drinkSound.Play();
-                Machine.Instance.drinkSound.Stop(); // Opcional: si quieres que se detenga al dejar de beber
 
             }
 
@@ -41,6 +40,7 @@ public class Stream : MonoBehaviour
         else
         {
             machine.animator.SetBool("isDrinking", false);
+            Machine.Instance.drinkSound.Stop(); 
 
         }
         if (gameObject.activeSelf && isPouring)

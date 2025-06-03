@@ -33,8 +33,6 @@ public class Ingredients : MonoBehaviour
         {
             if (machine != null)
             {
-                Machine.Instance.nomSound.Play();
-                Machine.Instance.animator.SetTrigger("eat");
                 machine.Fill(ingredientName);
                 ResetPosition();
             }

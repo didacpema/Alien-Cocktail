@@ -25,6 +25,8 @@ public class Machine : MonoBehaviour
     public AudioSource drinkSound;
     public AudioSource preparatingSound;
     public AudioSource badSound;
+
+    private bool isPlayingDrinkAnimation = false;
     private void Awake()
     {
         if (Instance == null)
@@ -104,6 +106,7 @@ public class Machine : MonoBehaviour
         currentRequirements.Clear();
         currentDone = 0;
         isDone = false;
+        isPlayingDrinkAnimation = false;
         foreach (var ingredientRequirement in currentRecipe.ingredients)
         {
             currentRequirements.Add(new IngredientRequirement
@@ -138,6 +141,12 @@ public class Machine : MonoBehaviour
                 if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
                     ingredientFound = true;
+                     if (!isPlayingDrinkAnimation && currentRequirements[i].amount > 0)
+                    {
+                        animator.SetTrigger("drink");
+                        isPlayingDrinkAnimation = true;
+                    }
+                    
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
                     else { req.amount = 0; }
@@ -150,6 +159,8 @@ public class Machine : MonoBehaviour
                         var ing = currentRequirements[i];
                         ing.ingredient.Completed = true;
                         currentRequirements[i] = ing;
+                        isPlayingDrinkAnimation = false; 
+                        StartCoroutine(ResetToIdle(0.5f)); 
                         UpdateOrder();
                         break;
                     }
@@ -157,6 +168,7 @@ public class Machine : MonoBehaviour
                 else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
                 {
                     ingredientFound = true;
+                    nomSound.Play();
                     animator.SetTrigger("eat"); 
                     StartCoroutine(ResetToIdle(0.66f)); 
                     
@@ -179,6 +191,7 @@ public class Machine : MonoBehaviour
 
             if (!ingredientFound)
             {
+                badSound.Play();
                 animator.SetTrigger("no");
                 StartCoroutine(ResetToIdle(2.7f)); 
             }
@@ -202,18 +215,28 @@ public class Machine : MonoBehaviour
 
     private void SpawnDrink()
     {
-        animator.SetTrigger("prepare");
         preparatingSound.Play();
-        StartCoroutine(ResetToIdle(7.33f)); 
-        GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
+        animator.SetTrigger("prepare");
+
+        StartCoroutine(SpawnDrinkAfterAnimation());
     }
     
+    private IEnumerator SpawnDrinkAfterAnimation()
+    {
+        yield return new WaitForSeconds(7.33f); 
+        GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
+        
+
+        animator.ResetTrigger("prepare");
+        animator.Play("Idle");
+    }
     private IEnumerator ResetToIdle(float delay)
     {
         yield return new WaitForSeconds(delay);
         animator.ResetTrigger("no");
         animator.ResetTrigger("prepare");
         animator.ResetTrigger("eat");
+        animator.ResetTrigger("drink"); // Añadido para limpiar el trigger de drink
         animator.Play("Idle"); 
     }
 }
