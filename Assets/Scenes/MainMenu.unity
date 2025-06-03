@@ -157,7 +157,7 @@ MonoBehaviour:
   recipeManager: {fileID: 1188740402}
   clientManager: {fileID: 1553478436}
   resultManager: {fileID: 1069535674}
-  totalOrderTime: 60
+  totalOrderTime: 180
   excellentPoints: 100
   goodPoints: 60
   failedPoints: 0

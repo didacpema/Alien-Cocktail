@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public ResultManager resultManager; 
 
     [Header("Time Settings")]
-    public float totalOrderTime = 60f;
+    public float totalOrderTime = 180f;
 
     private int currentScore;
     private int clientsServed;
