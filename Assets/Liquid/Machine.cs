@@ -111,7 +111,7 @@ public class Machine : MonoBehaviour
             {
                 Text.text += $"{ingredientRequirement.ingredient.name}  {ingredientRequirement.amount}ml\n";
             }
-            else
+            else if (ingredientRequirement.ingredient.type == IngredientType.Solid)
             {
                 Text.text += $"{ingredientRequirement.ingredient.name} x {ingredientRequirement.amount}\n";
             }
@@ -127,17 +127,20 @@ public class Machine : MonoBehaviour
         }
         else
         {
+            bool ingredientFound = false;
+            
             for (int i = 0; i < currentRequirements.Count; i++)
             {
                 if (currentRequirements[i].ingredient.type == IngredientType.Liquid && currentRequirements[i].ingredient.name == tag)
                 {
+                    ingredientFound = true;
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
                     else { req.amount = 0; }
 
                     currentRequirements[i] = req;
                     UpdateText();
-                    // Check if the fill amount exceeds the required amount
+                    
                     if (currentRequirements[i].amount <= 0f)
                     {
                         var ing = currentRequirements[i];
@@ -147,14 +150,18 @@ public class Machine : MonoBehaviour
                         break;
                     }
                 }
-                else if (currentRequirements[i].ingredient.name == tag)
+                else if (currentRequirements[i].ingredient.type == IngredientType.Solid && currentRequirements[i].ingredient.name == tag)
                 {
+                    ingredientFound = true;
+                    animator.SetTrigger("eat"); 
+                    StartCoroutine(ResetToIdle(0.66f)); 
+                    
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= 1; }
                     else { req.amount = 0; }
                     currentRequirements[i] = req;
                     UpdateText();
-                    // Check if the fill amount exceeds the required amount
+                    
                     if (currentRequirements[i].amount <= 0f)
                     {
                         var ing = currentRequirements[i];
@@ -164,10 +171,12 @@ public class Machine : MonoBehaviour
                         break;
                     }
                 }
-                else
-                {
-                    animator.SetTrigger("no");
-                }
+            }
+
+            if (!ingredientFound)
+            {
+                animator.SetTrigger("no");
+                StartCoroutine(ResetToIdle(2.7f)); 
             }
         }
     }
@@ -180,17 +189,26 @@ public class Machine : MonoBehaviour
             {
                 Text.text += $"{req.ingredient.name}  {req.amount}ml\n";
             }
-            else
+            else if (req.ingredient.type == IngredientType.Solid)
             {
                 Text.text += $"{req.ingredient.name} x {req.amount}\n";
             }
         }
     }
 
-    private IEnumerator SpawnDrink()
+    private void SpawnDrink()
     {
         animator.SetTrigger("prepare");
-        yield return new WaitForSeconds(7.33f);
+        StartCoroutine(ResetToIdle(7.33f)); 
         GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
+    }
+    
+    private IEnumerator ResetToIdle(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        animator.ResetTrigger("no");
+        animator.ResetTrigger("prepare");
+        animator.ResetTrigger("eat");
+        animator.Play("Idle"); 
     }
 }
