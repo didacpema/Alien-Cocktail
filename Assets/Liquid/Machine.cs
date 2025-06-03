@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class Machine : MonoBehaviour
 {
@@ -15,9 +16,11 @@ public class Machine : MonoBehaviour
     private CompleteOrderTrigger completeOrderTrigger;
     private Recipe currentRecipe;
     public bool isDone = false;
+    public bool isDrinking = false;
     private int currentDone = 0;
     public GameObject DrinkPrefab;
     public Transform drinkTransform;
+    public Animator animator;
     private void Awake()
     {
         if (Instance == null)
@@ -130,7 +133,7 @@ public class Machine : MonoBehaviour
                 {
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= Time.deltaTime * 4; }
-                    else {req.amount = 0; }
+                    else { req.amount = 0; }
 
                     currentRequirements[i] = req;
                     UpdateText();
@@ -148,7 +151,7 @@ public class Machine : MonoBehaviour
                 {
                     var req = currentRequirements[i];
                     if (req.amount > 0f) { req.amount -= 1; }
-                    else {req.amount = 0; }
+                    else { req.amount = 0; }
                     currentRequirements[i] = req;
                     UpdateText();
                     // Check if the fill amount exceeds the required amount
@@ -160,6 +163,10 @@ public class Machine : MonoBehaviour
                         UpdateOrder();
                         break;
                     }
+                }
+                else
+                {
+                    animator.SetTrigger("no");
                 }
             }
         }
@@ -180,8 +187,10 @@ public class Machine : MonoBehaviour
         }
     }
 
-    private void SpawnDrink()
+    private IEnumerator SpawnDrink()
     {
+        animator.SetTrigger("prepare");
+        yield return new WaitForSeconds(7.33f);
         GameObject drink = Instantiate(DrinkPrefab, drinkTransform.position, drinkTransform.rotation);
     }
 }

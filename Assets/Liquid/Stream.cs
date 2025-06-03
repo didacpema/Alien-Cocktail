@@ -27,23 +27,39 @@ public class Stream : MonoBehaviour
     }
     void Update()
     {
-        //Update the line renderer positions
+        if (machine.isDrinking)
+        {
+            machine.animator.SetBool("isDrinking", true);
+        }
+        else
+        {
+            machine.animator.SetBool("isDrinking", false);
 
+        }
         if (gameObject.activeSelf && isPouring)
         {
             AnimateToPosition(0, originTransform.position);
             FindEndPoint();
+
             if (isHitting && HasReachedPosition(1, targetPosition))
             {
                 machine.Fill(gameObject.tag);
+                machine.isDrinking = true;
             }
+            else
+            {
+                machine.isDrinking = false;
+            }
+
             AnimateToPosition(1, targetPosition);
         }
-        if(wobble.currentFillAmount <= -0.85f)
+
+        if (wobble.currentFillAmount <= -0.85f)
         {
             End();
         }
     }
+
 
     public void Begin()
     {
@@ -66,8 +82,10 @@ public class Stream : MonoBehaviour
     {
         StopCoroutine(pourCoroutine);
         isPouring = false;
+        machine.isDrinking = false; // << AÑADIDO
         pourCoroutine = StartCoroutine(EndPour());
     }
+
     private IEnumerator EndPour()
     {
         while (!HasReachedPosition(0, targetPosition))

@@ -33222,9 +33222,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8fad53ff53e19034f817d0ee567cd4cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1744416262}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8fad53ff53e19034f817d0ee567cd4cb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1744416264}
   m_SourcePrefab: {fileID: 100100000, guid: 8fad53ff53e19034f817d0ee567cd4cb, type: 3}
 --- !u!4 &1744416260 stripped
 Transform:
@@ -33262,24 +33259,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8fad53ff53e19034f817d0ee567cd4cb, type: 3}
   m_PrefabInstance: {fileID: 1744416259}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1744416264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744416261}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.9716981, g: 0.92236024, b: 0.34376112, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &1770177554
 GameObject:
   m_ObjectHideFlags: 0
@@ -33636,8 +33615,10 @@ MonoBehaviour:
   recipeManager: {fileID: 0}
   clientManager: {fileID: 0}
   isDone: 0
+  isDrinking: 0
   DrinkPrefab: {fileID: 483799195081618129, guid: 37b5ab8e04ec031448932b7dc37021cd, type: 3}
   drinkTransform: {fileID: 407093053}
+  animator: {fileID: 1744416262}
 --- !u!65 &1808507504
 BoxCollider:
   m_ObjectHideFlags: 0
